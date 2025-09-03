@@ -25,10 +25,11 @@
       }
       a = document.frm1.pass.value;
       if (a == "") {
-        document.getElementById('pass').innerHTML = "*Enter Password";
+        document.getElementById('passMSG').innerHTML = "*Enter Password";
+        console.log("document.getElementById('pass')", document.getElementById('pass'))
         result = false;
       } else {
-        document.getElementById('pass').innerHTML = "";
+        document.getElementById('passMSG').innerHTML = "";
       }
       return result;
     }
@@ -132,18 +133,24 @@
         <hr>
         </hr>
       </div>
-        <div style="display: flex; flex-direction:column; gap: 20px; padding-top: 10px; padding-bottom: 40px; width: 80%; margin: auto;">
-          <div style="display: flex; justify-content:space-between">
+      <div style="display: flex; flex-direction:column; gap: 20px; padding-top: 10px; padding-bottom: 40px; width: 80%; margin: auto;">
+        <div style="display: flex; justify-content:space-between">
           <label>Email : </label>
-          <input type="email" placeholder=" Email" name="umail" id="umail" /> 
-          <span id="umailMsg"></span>
+          <div style="display:flex; flex-direction:column;">
+            <input type="email" placeholder="Enter Your Email" name="umail" id="umail" />
+            <span id="umailMsg" style="color:red"></span>
+          </div>
         </div>
         <div style="display: flex; justify-content:space-between">
           <label>Password :</label>
-          <input type="password" placeholder=" Password" name="pass" id="pass"/>
-        </div></div>
-        <input type="submit" name="logBtn" value="Login">
-        <h6> <a href="regis.php">CREATE AN ACCOUNT </a>...</h6>
+          <div style="display:flex; flex-direction:column;">
+            <input type="password" placeholder="Enter Password" name="pass" id="pass" />
+            <span id="passMSG" style="color:red"></span>
+          </div>
+        </div>
+      </div>
+      <input type="submit" name="logBtn" value="Login">
+      <h6 style="color:blue"> <a href="regis.php" style="color:red !important; text-decoration:none;">CREATE AN ACCOUNT </a>...</h6>
     </form>
   </div>
 </body>
