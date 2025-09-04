@@ -1,3 +1,24 @@
+<?php
+extract($_REQUEST);
+if (isset($logBtn)) {
+    $link = mysqli_connect("localhost", "root", "", "quiz");
+    if (!$link) {
+        die("Database connection failed: " . mysqli_connect_error());
+    }
+    $qry = "select email from regis where email='$umail' and password='$pass'";
+    $r = mysqli_query($link, $qry);
+    $c = mysqli_num_rows($r);
+    if ($c == 1) {
+        session_start();
+        $_SESSION['email'] = $umail1;
+        header("Location:quiz_1.php");
+        exit();
+    } else {
+        echo "Invalid email or password";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,16 +29,13 @@
   <title>Login</title>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script type="text/javascript">
     function f1() {
       var result = true;
       var a = document.frm1.umail.value;
       if (a == "") {
-        document.getElementById('umailMsg').innerHTML = "*Enter Email";
+        document.getElementById('umailMsg').innerHTML = "Enter Email";
         console.log("document.getElementById('umail')", document.getElementById('umail'))
         result = false;
       } else {
@@ -25,7 +43,7 @@
       }
       a = document.frm1.pass.value;
       if (a == "") {
-        document.getElementById('passMSG').innerHTML = "*Enter Password";
+        document.getElementById('passMSG').innerHTML = "Enter Password";
         console.log("document.getElementById('pass')", document.getElementById('pass'))
         result = false;
       } else {
@@ -34,144 +52,51 @@
       return result;
     }
   </script>
-  <style>
-    body {
 
-      background-image: black;
-      background-image: url('background.avif');
+ <style>
+    body{
+      background-image: url("https://t4.ftcdn.net/jpg/04/39/13/37/360_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg");
+      background-repeat: no-repeat;
+      /* background-position: center center; */
       background-size: cover;
       background-attachment: fixed;
     }
-
-    input,
-    select,
-    textarea {
-      color: black;
-    }
-
-    nav {
-      padding: 0px 20px 0px 20px;
-      font-size: 18px;
-      font-family: cursive;
-      background-color: #ad5fa7ff !important;
-    }
-
-    .form {
-      color: #ffffffff;
-      font-size: 16px;
-      position: absolute;
-      right: 30%;
-      bottom: 20%;
-      width: 35%;
-      height: 38%;
-      top: 35%;
-      border: 0px solid gray;
-
-    }
-
-    div form input[type=submit] {
-      border: 2px solid rgb(71, 80, 82);
-      background-color: #ad5fa7;
-      color: #ffffffff;
-      font-size: 14px;
-      border-radius: 10px;
-      font-weight: 700;
-      padding: 3px 50px;
-    }
-
-    div form input[type=email],
-    div form input[type=password] {
-
-      background-color: white;
-      font-size: 16px;
-    }
-
-    hr {
-      border-top: 3px solid rgba(0, 0, 0, 1);
-    }
-
-    div form input[type=email]:focus,
-    div form input[type=password]:focus {
-      border: 3px solid rgb(163, 170, 172);
-      border-radius: 10px;
-    }
-
-    div form input[type=email],
-    div form input[type=password] {
-
-      border-radius: 10px;
-    }
-
-    a {
-      color: #ffffffff !important;
-    }
   </style>
+ 
 </head>
 
 <body>
-  <div class="container-fluid">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav">
-          <li><a href="login2.php">Home</a></li>
-          <li><a href="regis.php">Register</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Logout</a></li>
-        </ul>
+  <div class = "main flex h-screen flex-col justify-center items-start pl-40 p-4">
+    <form class = "form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" name="frm1" onsubmit="return f1()">
+      <div class="flex justify-center">
+        <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
       </div>
-    </nav>
-  </div>
-
-
-  <div class="form">
-    <form align="center" name="frm1" onsubmit="return f1()">
-      <div class="hading">
-        <h3 style="color: #ffffffff; font-weight:600; font-size:35px"> ENTER YOUR DETAIL</h3>
-        <hr>
-        </hr>
+    <div class="heading p-2">
+        <h1 class="text-[1.5rem] font-medium text-[#191c5c]"> Sign in to Quiz</h1>
+        <!-- <hr class="border-t border-black border-2"></hr> -->
       </div>
-      <div style="display: flex; flex-direction:column; gap: 20px; padding-top: 10px; padding-bottom: 40px; width: 80%; margin: auto;">
-        <div style="display: flex; justify-content:space-between">
-          <label>Email : </label>
+      <div class="flex flex-col gap-3 p-2">
+        <div class="flex flex-col pt-3">
+          <label class="text-start text-sm font-medium text-[#191c5c]"> Username or email address : </label>
           <div style="display:flex; flex-direction:column;">
-            <input type="email" placeholder="Enter Your Email" name="umail" id="umail" />
-            <span id="umailMsg" style="color:red"></span>
+            <input class="px-4 py-2 text-[#191c5c] text-sm rounded-md focus:ring-0 outline-none border-1 border-gray-300" type="email" placeholder="Enter Your Email" name="umail" id="umail" />
+            <span id="umailMsg" class="text-red-500  text-start text-xs"></span>
           </div>
         </div>
-        <div style="display: flex; justify-content:space-between">
-          <label>Password :</label>
+        <div class="flex flex-col">
+          <label class="text-start text-sm font-medium text-[#191c5c]">Password :</label>
           <div style="display:flex; flex-direction:column;">
-            <input type="password" placeholder="Enter Password" name="pass" id="pass" />
-            <span id="passMSG" style="color:red"></span>
+            <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-0 outline-none border-1 border-gray-300" type="password" placeholder="Enter Password" name="pass" id="pass" />
+            <span id="passMSG" class="text-red-500  text-start text-xs"></span>
           </div>
         </div>
       </div>
-      <input type="submit" name="logBtn" value="Login">
-      <h6 style="color:blue"> <a href="regis.php" style="color:red !important; text-decoration:none;">CREATE AN ACCOUNT </a>...</h6>
+      <div class="p-2 pt-5">
+        <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-45 rounded-md py-2" type="submit" name="logBtn" value="Sign in">
+        <p class="text-sm text-[#191c5c] p-3" > New to Quiz? <a href="regis.php" class="text-blue-600">Create an account</a></p>
+      </div>
     </form>
   </div>
 </body>
 
 </html>
-<?php
-extract($_REQUEST);
-if (isset($logBtn)) {
-  $link = mysqli_connect("localhost", "root", "", "quiz");
-  $qry = "select email from regis where email='$umail' and  password='$pass'";
-  $r = mysqli_query($link, $qry);
-  $c = mysqli_num_rows($r);
-  if ($c == 1) {
-
-    $r = mysqli_query($link, $qry);
-    session_start();
-    $_SESSION['email'] = $umail;
-    header("location:quiz.php");
-    echo $a[0];
-  } else {
-    echo "Invalid email or password";
-  }
-}
-?>
