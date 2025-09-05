@@ -1,3 +1,24 @@
+<?php
+extract($_REQUEST);
+if (isset($logBtn)) {
+    $link = mysqli_connect("localhost", "root", "", "quiz");
+    if (!$link) {
+        die("Database connection failed: " . mysqli_connect_error());
+    }
+    $qry = "select email from regis where email='$umail' and password='$pass'";
+    $r = mysqli_query($link, $qry);
+    $c = mysqli_num_rows($r);
+    if ($c == 1) {
+        session_start();
+        $_SESSION['email'] = $umail;
+        header("Location:quiz_1.php");
+        exit();
+    } else {
+        echo "Invalid email or password";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,15 +29,13 @@
   <title>Login</title>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script type="text/javascript">
     function f1() {
       var result = true;
       var a = document.frm1.umail.value;
       if (a == "") {
-        document.getElementById('umailMsg').innerHTML = "*Enter Email";
+        document.getElementById('umailMsg').innerHTML = "Enter Email";
         console.log("document.getElementById('umail')", document.getElementById('umail'))
         result = false;
       } else {
@@ -24,7 +43,7 @@
       }
       a = document.frm1.pass.value;
       if (a == "") {
-        document.getElementById('passMSG').innerHTML = "*Enter Password";
+        document.getElementById('passMSG').innerHTML = "Enter Password";
         console.log("document.getElementById('pass')", document.getElementById('pass'))
         result = false;
       } else {
@@ -33,7 +52,8 @@
       return result;
     }
   </script>
-  <style>
+
+ <style>
     body{
       background-image: url("https://t4.ftcdn.net/jpg/04/39/13/37/360_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg");
       background-repeat: no-repeat;
@@ -42,27 +62,11 @@
       background-attachment: fixed;
     }
   </style>
+ 
 </head>
 
 <body>
-  <!-- <div class=" w-screen h-[8vh] bg-[#ab34eb] text-white font-medium flex flex-row sticky top-0 left-0">
-    <nav class="flex w-screen ">
-      <div class="flex w-screen justify-between px-4 py-3">
-        <ul class="flex gap-4">
-          <li><a class="px-6" href="login2.php">Home</a></li>
-          <li><a class="px-6" href="regis.php">Register</a></li>
-          <li><a class="px-6" href="#">About Us</a></li>
-          <li><a class="px-6" href="#">FAQ</a></li>
-        </ul>
-        <ul class="">
-          <li><a href="#">Logout</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div> -->
-
-
-  <div class = "main flex h-screen flex-col justify-center items-start pl-26 xl:pl35 p-4">
+  <div class = "main flex h-screen flex-col justify-center items-start pl-40 p-4">
     <form class = "form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" name="frm1" onsubmit="return f1()">
       <div class="flex justify-center">
         <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
@@ -96,22 +100,3 @@
 </body>
 
 </html>
-<?php
-extract($_REQUEST);
-if (isset($logBtn)) {
-  $link = mysqli_connect("localhost", "root", "", "quiz");
-  $qry = "select email from regis where email='$umail' and  password='$pass'";
-  $r = mysqli_query($link, $qry);
-  $c = mysqli_num_rows($r);
-  if ($c == 1) {
-
-    $r = mysqli_query($link, $qry);
-    session_start();
-    $_SESSION['email'] = $umail;
-    header("location:quiz.php");
-    echo $a[0];
-  } else {
-    echo "Invalid email or password";
-  }
-}
-?>

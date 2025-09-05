@@ -9,7 +9,6 @@
    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   <link href="css/style.css" rel="stylesheet" type="text/css" />
    <script type="text/javascript">
       function f() {
          var result = true;
@@ -49,6 +48,10 @@
          background-attachment: fixed;
       }
 
+      hr {
+         border-top: 3px solid rgba(0, 0, 0, 1);
+      }
+
       nav {
          padding: 0px 20px 0px 20px;
          font-size: 18px;
@@ -57,8 +60,7 @@
       }
 
       .hading {
-         padding: 0 150px;
-         float: right;
+         align-items: center;
          color: #b0bed3;
          font-size: 40px;
          font-weight: 200;
@@ -127,27 +129,27 @@
       </nav>
    </div>
    <div class="form">
-      <form align="center" method="post" name="frm" onsubmit="return f()"><br>
+      <form align="center" method="post" name="frm" onsubmit="return f()">
          <div class="hading">
             <h3 style="color: #ffffffff; font-weight:600; font-size:35px"> Create Your Account</h3>
             <hr>
             </hr>
          </div>
 
-        <div style="display: flex; flex-direction:column; gap: 20px; padding-top: 10px; padding-bottom: 40px; width: 80%; margin: auto;">
-         <div style="display: flex; justify-content:space-between">
-          <label>Name :</label>
-          <input type="text" placeholder=" Enter Your Name" name="name" id="name"/>
-        </div>  
-        <div style="display: flex; justify-content:space-between">
-          <label>Email : </label>
-          <input type="email" placeholder=" Enter Your Email" name="mail" id="mail"/> 
-        </div>
-        <div style="display: flex; justify-content:space-between">
-          <label>Password :</label>
-          <input type="password" placeholder="Enter Password" name="pwd1" id="pwd"/>
-        </div>
-      </div>
+         <div style="display: flex; flex-direction:column; gap: 20px; padding-top: 10px; padding-bottom: 40px; width: 80%; margin: auto;">
+            <div style="display: flex; justify-content:space-between">
+               <label>Name :</label>
+               <input type="text" placeholder=" Enter Your Name" name="name" id="name" />
+            </div>
+            <div style="display: flex; justify-content:space-between">
+               <label>Email : </label>
+               <input type="email" placeholder=" Enter Your Email" name="mail" id="mail" />
+            </div>
+            <div style="display: flex; justify-content:space-between">
+               <label>Password :</label>
+               <input type="password" placeholder="Enter Password" name="pwd1" id="pwd" />
+            </div>
+         </div>
          <input type="submit" name="btn" value="CREATE ACCOUNT"><BR />
          <h4>OR <a href="login2.php"> LOGIN </a>...</h4>
       </form>
@@ -164,7 +166,7 @@ if (isset($btn)) {
    $r = mysqli_query($link, $qry);
 
    if ($r) {
-      echo '<span style="color:black  "><h2>ACCOUNT CREATED...</h2></span>';
+      echo '<span style="color:black; "><h2>ACCOUNT CREATED...</h2></span>';
    } else {
       echo   '<span style="color:black" style= "padding:1 100px"><h2>Try Again</h2></span>';
    }
