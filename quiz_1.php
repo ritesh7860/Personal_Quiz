@@ -1,9 +1,9 @@
 <?php
 session_start();
-// if (!isset($_SESSION['questions']) || !isset($_SESSION['email'])) {
-//     header("Location: login2.php");
-//     exit;
-// }
+if (!isset($_SESSION['questions']) || !isset($_SESSION['email'])) {
+    header("Location: login2.php");
+    exit;
+}
 $link = mysqli_connect("localhost", "root", "", "quiz");
 if (!$link) {
     die("Database connection failed: " . mysqli_connect_error());
@@ -82,6 +82,7 @@ $question = $questions[$current];
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.3s;
+            text-align: start;
         }
         input[type="radio"] {
             margin-right: 10px;

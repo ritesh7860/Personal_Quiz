@@ -10,7 +10,7 @@ if (isset($logBtn)) {
     $c = mysqli_num_rows($r);
     if ($c == 1) {
         session_start();
-        $_SESSION['email'] = $umail1;
+        $_SESSION['email'] = $umail;
         header("Location:quiz_1.php");
         exit();
     } else {

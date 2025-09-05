@@ -84,7 +84,7 @@ unset($_SESSION['correct']);
     <div class="score">❌ Wrong Answers: <?= $resultData['total'] - $resultData['score'] ?></div>
     <div class="score">📅 Taken on: <?= $resultData['created_at'] ?></div>
 
-    <a href="quiz_1.php" class="btn">Restart Quiz</a>
+    <a href="login2.php" class="btn">Log Out</a>
 </div>
 
 </body>

@@ -81,3 +81,28 @@ CREATE TABLE IF NOT EXISTS `regis` (
 
 INSERT INTO `regis` (`name`, `email`, `password`) VALUES
 ('Ritesh singh', 'riteshsinghran@gmail.com', '12345');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `results`
+--
+
+CREATE TABLE `results` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `score` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for table `results`
+--
+ALTER TABLE `results`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `results`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+COMMIT;
