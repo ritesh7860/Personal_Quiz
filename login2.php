@@ -62,7 +62,7 @@
   </div> -->
 
 
-  <div class = "main flex h-screen flex-col justify-center items-start pl-26 p-4">
+  <div class = "main flex h-screen flex-col justify-center items-start pl-26 xl:pl35 p-4">
     <form class = "form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" name="frm1" onsubmit="return f1()">
       <div class="flex justify-center">
         <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
