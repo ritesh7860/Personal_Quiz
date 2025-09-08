@@ -1,4 +1,6 @@
+<html>
 <head>
+    <title>WIN OR BOOZE - Insert</title>
 </head>
 
 <body>
