@@ -23,7 +23,8 @@ if (!isset($_SESSION['questions'])) {
     // Save selected technology in session
     $_SESSION['tech'] = $tech;
 
-    $stmt = $link->prepare("SELECT * FROM question WHERE technology=? ORDER BY qid");
+    // Fetch 20 random questions of selected technology
+    $stmt = $link->prepare("SELECT * FROM question WHERE technology=? ORDER BY RAND() LIMIT 20");
     $stmt->bind_param("s", $tech);
     $stmt->execute();
     $resultset = $stmt->get_result();
@@ -41,6 +42,7 @@ if (!isset($_SESSION['questions'])) {
     $_SESSION['current'] = 0;
     $_SESSION['correct'] = 0;
 }
+
 
 $questions = $_SESSION['questions'];
 $current = $_SESSION['current'];
