@@ -1,56 +1,53 @@
 <html>
 <head>
-    <title>WIN OR BOOZE - Insert</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIN OR BOOZE</title>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         body{
-            background-color: #124170;
+            background-color: #191c5c;
+            /* color: #e6e6ee; */
         }
     </style>
 </head>
 
 <body>
-    <br><br><br><br>
-    <center>
-        <h1>Insert</h1>
-    </center>
-    <br>
-    <hr>
-    <table align="center" border="3" cellspacing="0">
-        <form name="fr1" method="post">
-            <tr>
-                <td>qid:</td>
-                <td><input type="text" name="qno" placeholder="ques id" /></input></td>
-            </tr>
-            <tr>
-                <td>qns:</td>
-                <td><input type="text" name="ques" placeholder="Enter ques:" /></input></td>
-            </tr>
-            <tr>
-                <td>OptA</td>
-                <td><input type="text" name="a" placeholder="option A" /></input></td>
-            </tr>
-            <tr>
-                <td>OptB</td>
-                <td><input type="text" name="b" placeholder="option B" /></input></td>
-            </tr>
-            <tr>
-                <td>OptC</td>
-                <td><input type="text" name="c" placeholder="option C" /></input></td>
-            </tr>
-            <tr>
-                <td>OptD</td>
-                <td><input type="text" name="d" placeholder="option D" /></input></td>
-            </tr>
-            <tr>
-                <td>ans</td>
-                <td><input type="text" name="ans" placeholder="ans" /></input></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" name="s1" value="Insert" /></input></td>
-            </tr>
+    <div class="flex flex-col h-screen w-screen justify-center items-center">
+        <form class="w-[400px] border-1 border-red bg-[#e6e6e6] rounded-sm p-3" name="fr1" method="post">
+            <div class="flex flex-col">
+                <label>Question</label>
+                <textarea class="border-1 p-1.5 rounded-sm" type="text" name="ques" placeholder="Enter ques:" ></textarea>
+            </div>
+            <div class="flex flex-col">
+                <label>OptA</label>
+                <input class="border-1 p-1.5 rounded-sm" type="text" name="a" placeholder="option A" />
+            </div>
+            <div class="flex flex-col">
+                <label>OptB</label>
+                <input class="border-1 p-1.5 rounded-sm" type="text" name="b" placeholder="option B" />
+            </div>
+            <div class="flex flex-col">
+                <label>OptC</label>
+                <input class="border-1 p-1.5 rounded-sm" type="text" name="c" placeholder="option C" />
+            </div>
+            <div class="flex flex-col">
+                <label>OptD</label>
+                <input class="border-1 p-1.5 rounded-sm" type="text" name="d" placeholder="option D" />
+            </div>
+            <div class="flex flex-col">
+                <label>ans</label>
+                <input class="border-1 p-1.5 rounded-sm" type="text" name="ans" placeholder="ans" />
+            </div>
+            <div>
+                <input class="px-25 py-2 bg-[#191c5c] text-white rounded-md" type="submit" name="s1" value="Insert" />
+            </div>
 
         </form>
-    </table>
+    </div>
 
 
 </body>
