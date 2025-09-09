@@ -108,7 +108,7 @@
                <label class="text-start text-sm font-medium text-[#191c5c]">Password :</label>
                <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter your password" name="pwd1" id="pwd" onfocus="resetBorder(this)" />
                <!-- Eye Button -->
-               <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700">
+               <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700 cursor-pointer">
                   <!-- Eye Open -->
                   <svg id="eyeClosed" class="hidden" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

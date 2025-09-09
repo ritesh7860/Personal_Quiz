@@ -1,6 +1,11 @@
 <html>
 <head>
     <title>WIN OR BOOZE - Insert</title>
+    <style>
+        body{
+            background-color: #124170;
+        }
+    </style>
 </head>
 
 <body>
