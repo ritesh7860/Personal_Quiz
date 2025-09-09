@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     session_regenerate_id(true);
                     $_SESSION['email'] = $umail;
                     // Redirect to quiz page
-                    header('Location: quiz_1.php');
+                    header('Location: language_Selection.php');
                     exit();
                 } else {
                     $errorMsg = 'Invalid email or password.';
@@ -51,14 +51,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <title>WIN OR BOOZE - Login</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WIN OR BOOZE</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="text/javascript">
+
+    function validateEmail(email) {
+      // Simple email pattern
+      const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+       return pattern.test(email);
+    }
+
+    function f1() {
+      var result = true;
+      var a = document.frm1.umail.value;
+      const emailInput = document.getElementById('umail');
+      const emailValue = emailInput.value.trim();
+
+      if (a == "") {
+        emailInput.style.borderColor = 'red';
+        result = false;
+      } else if (!validateEmail(emailValue)) {
+          emailInput.style.borderColor = 'red';
+          document.getElementById('emailMsg').innerText = "Please enter a valid email address.";
+          result = false;
+      }
+      else {
+        document.getElementById('umail').style.borderColor = '';
+        emailMsg.innerText = "";
+      }
+      a = document.frm1.pass.value;
+      if (a == "") {
+        document.getElementById('pass').style.borderColor = 'red';
+        result = false;
+      } else {
+        document.getElementById('pass').style.borderColor = '';
+      }
+      return result;
+    }
+
+    function resetBorder(element) {
+         element.style.borderColor = '';
+      }
+
+      function togglePassword() {
+         const password = document.getElementById("pass");
+         const eyeOpen = document.getElementById("eyeOpen");
+         const eyeClosed = document.getElementById("eyeClosed");
+
+         if (password.type === "password") {
+            password.type = "text";
+            eyeOpen.classList.add("hidden");
+            eyeClosed.classList.remove("hidden");
+         } else {
+            password.type = "password";
+            eyeOpen.classList.remove("hidden");
+            eyeClosed.classList.add("hidden");
+         }
+      }
+  </script>
+
   <style>
     body {
       background-image: url("https://t4.ftcdn.net/jpg/04/39/13/37/360_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg");
@@ -66,94 +127,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       background-size: cover;
       background-attachment: fixed;
     }
-    /* small inline tweak so the eye icon sits inside input */
-    .input-wrap { position: relative; }
-    .input-wrap .fa-eye, .input-wrap .fa-eye-slash {
-      position: absolute;
-      right: 12px;
-      top: 72%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #6b7280;
-    }
   </style>
 
-  <script type="text/javascript">
-//    Client-side validation (keeps your existing behaviour)
-    function f1() {
-      var result = true;
-      var email = document.frm1.umail.value.trim();
-      if (email == "") {
-        document.getElementById('umailMsg').innerHTML = "Enter Email";
-        result = false;
-      } else {
-        document.getElementById('umailMsg').innerHTML = "";
-      }
-      var pass = document.frm1.pass.value;
-      if (pass == "") {
-        document.getElementById('passMSG').innerHTML = "Enter Password";
-        result = false;
-      } else {
-        document.getElementById('passMSG').innerHTML = "";
-      }
-      return result;
-    }
-
-    // Password visibility toggle
-    function togglePassword() {
-      var p = document.getElementById('pass');
-      var icon = document.getElementById('eyeIcon');
-      if (p.type === 'password') {
-        p.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-      } else {
-        p.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-      }
-    }
-  </script>
 </head>
+
 <body>
-  <div class="main flex h-screen flex-col justify-center items-start pl-40 p-4">
-    <form class="form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" method="post" align="center" name="frm1" onsubmit="return f1()">
-      <div class="flex justify-center mb-4">
-        <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg" alt="logo">
+  <div class = "main flex h-screen flex-col justify-center items-start pl-36 p-4">
+    <form class = "form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm1" onsubmit="return f1()">
+      <div class="flex justify-center">
+        <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
       </div>
       <div class="heading p-2">
-        <h1 class="text-[1.5rem] font-medium text-[#191c5c] text-center">Sign in to Quiz</h1>
+        <h1 class="text-[1.5rem] font-medium text-[#191c5c]"> Sign in to Quiz</h1>
+        <!-- <hr class="border-t border-black border-2"></hr> -->
       </div>
 
-      <!-- Email Field -->
-      <div class="flex flex-col pt-3">
-        <label class="text-start text-sm font-medium text-[#191c5c]">Username or email address:</label>
-        <input class="px-4 py-2 text-[#191c5c] text-sm rounded-md focus:ring-0 outline-none border border-gray-300"
-               type="email" placeholder="Enter Your Email" name="umail" id="umail"/>
-        <span id="umailMsg" class="text-red-500 text-start text-xs"></span>
+      <!-- Username or email address input Field -->
+
+      <div class="flex flex-col gap-3 p-2">
+        <div class="flex flex-col pt-3">
+          <label class="text-start text-sm font-medium text-[#191c5c]"> Username or email address : </label>
+          <div style="display:flex; flex-direction:column;">
+            <input class="px-4 py-2 text-[#191c5c] text-sm rounded-md focus:ring-1 outline-none border-1 border-gray-300" placeholder="Enter your email" type="text" name="umail" id="umail" onfocus="resetBorder(this)" />
+            <span id="emailMsg" class="text-red-700 text-xs text-start"></span>
+          </div>
+        </div>
+        <div class="flex flex-col relative">
+          <label class="text-start text-sm font-medium text-[#191c5c]">Password :</label>
+          <div style="display:flex; flex-direction:column;">
+            <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter your password" name="pass" id="pass" onfocus="resetBorder(this)" />
+            <!-- Eye Button -->
+               <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700 cursor-pointer">
+                  <!-- Eye Open -->
+                  <svg id="eyeClosed" class="hidden" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M2 11.98C8.09 1.31996 15.91 1.32996 22 11.98" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M22 12.01C15.91 22.67 8.09 22.66 2 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+
+                  <!-- Eye Closed -->
+                  <svg id="eyeOpen" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M14.83 9.17999C14.2706 8.61995 13.5576 8.23846 12.7813 8.08386C12.0049 7.92926 11.2002 8.00851 10.4689 8.31152C9.73758 8.61453 9.11264 9.12769 8.67316 9.78607C8.23367 10.4444 7.99938 11.2184 8 12.01C7.99916 13.0663 8.41619 14.08 9.16004 14.83" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M12 16.01C13.0609 16.01 14.0783 15.5886 14.8284 14.8384C15.5786 14.0883 16 13.0709 16 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M17.61 6.39004L6.38 17.62C4.6208 15.9966 3.14099 14.0944 2 11.99C6.71 3.76002 12.44 1.89004 17.61 6.39004Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M20.9994 3L17.6094 6.39" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M6.38 17.62L3 21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     <path d="M19.5695 8.42999C20.4801 9.55186 21.2931 10.7496 21.9995 12.01C17.9995 19.01 13.2695 21.4 8.76953 19.23" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+               </button>
+          </div>
+        </div>
       </div>
-
-      <!-- Password Field with Eye -->
-      <div class="flex flex-col pt-3 input-wrap">
-        <label class="text-start text-sm font-medium text-[#191c5c]">Password :</label>
-        <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-0 outline-none border border-gray-300 w-full"
-               type="password" placeholder="Enter Password" name="pass" id="pass" />
-        <i id="eyeIcon" class="fa fa-eye" onclick="togglePassword()" aria-hidden="true"></i>
-        <span id="passMSG" class="text-red-500 text-start text-xs"></span>
-      </div>
-
-      <!-- Server-side error message -->
-      <?php if ($errorMsg !== ''): ?>
-        <p class="text-red-600 text-sm mt-2"><?= htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8') ?></p>
-      <?php endif; ?>
-
-<!-- Sign In Button -->
+      <!-- Sign In Button -->
 
       <div class="p-2 pt-5">
-        <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-45 rounded-md py-2" type="submit" name="logBtn" value="Sign in">
-        <p class="text-sm text-[#191c5c] p-3"> New to Quiz? <a href="regis.php" class="text-blue-600">Create an account</a></p>
+        <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-35 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="logBtn" value="Sign in">
+        <p class="text-sm text-[#191c5c] p-3" > New to Quiz? <a href="Registration.php" class="text-blue-600">Create an account → </a></p>
       </div>
     </form>
   </div>
 </body>
+
 </html>

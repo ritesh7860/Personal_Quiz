@@ -1,21 +1,42 @@
 <?php
+// quiz_1.php
 session_start();
 if (!isset($_SESSION['email'])) {
     header("Location: login2.php");
     exit;
 }
+
 $link = mysqli_connect("localhost", "root", "", "quiz");
 if (!$link) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-// Fetch questions only once and store in session
+// Load questions only once per session/tech
 if (!isset($_SESSION['questions'])) {
-    $resultset = mysqli_query($link, "SELECT * FROM question ORDER BY qid");
+    if (!isset($_GET['tech'])) {
+        header("Location: welcome.php");
+        exit;
+    }
+
+    $tech = $_GET['tech'];
+
+    // Save selected technology in session
+    $_SESSION['tech'] = $tech;
+
+    $stmt = $link->prepare("SELECT * FROM question WHERE technology=? ORDER BY qid");
+    $stmt->bind_param("s", $tech);
+    $stmt->execute();
+    $resultset = $stmt->get_result();
+
     $questions = [];
     while ($r = mysqli_fetch_assoc($resultset)) {
         $questions[] = $r;
     }
+
+    if (empty($questions)) {
+        die("No questions available for $tech");
+    }
+
     $_SESSION['questions'] = $questions;
     $_SESSION['current'] = 0;
     $_SESSION['correct'] = 0;
@@ -23,6 +44,7 @@ if (!isset($_SESSION['questions'])) {
 
 $questions = $_SESSION['questions'];
 $current = $_SESSION['current'];
+
 
 // Handle answer submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -35,18 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $_SESSION['current']++;
 
-    // If finished, go to result page
     if ($_SESSION['current'] >= count($questions)) {
         header("Location: result.php");
         exit;
     } else {
-        header("Location: quiz_1.php");
+        header("Location: quiz_1.php"); // no tech param needed anymore
         exit;
     }
 }
 
 $question = $questions[$current];
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
