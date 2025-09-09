@@ -58,10 +58,10 @@ if (!isset($_SESSION['email'])) {
         <h2>Welcome, <?= htmlspecialchars($_SESSION['email']) ?>!</h2>
         <p>Select a technology to start your quiz:</p>
 
-        <a href="quiz_1.php?tech=c" class="btn">C Language</a>
-        <a href="quiz_1.php?tech=php" class="btn">PHP Language</a>
-        <a href="quiz_1.php?tech=java" class="btn">Java</a>
-        <a href="quiz_1.php?tech=python" class="btn">Python</a>
+        <a href="quiz_1.php?tech=C" class="btn">C Language</a>
+        <a href="quiz_1.php?tech=PHP" class="btn">PHP Language</a>
+        <a href="quiz_1.php?tech=Java" class="btn">Java</a>
+        <a href="quiz_1.php?tech=Python" class="btn">Python</a>
 
         <a href="Logout.php" class="logout">Logout</a>
     </div>

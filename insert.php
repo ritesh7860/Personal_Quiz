@@ -1,3 +1,17 @@
+<?php
+extract($_REQUEST);
+if (isset($s1)) {
+
+    $link = mysqli_connect("localhost", "root", "", "quiz");
+    $qry = "insert into question values('$qno','$ques','$a','$b','$c','$d','$ans')";
+    $r = mysqli_query($link, $qry);
+
+    mysqli_close($link);
+
+    echo "Record Added...";
+}
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -53,21 +67,3 @@
 </body>
 
 </html>
-
-
-<?php
-extract($_REQUEST);
-if (isset($s1)) {
-
-    $link = mysqli_connect("localhost", "root", "", "quiz");
-    $qry = "insert into question values('$qno','$ques','$a','$b','$c','$d','$ans')";
-    $r = mysqli_query($link, $qry);
-
-    mysqli_close($link);
-
-    echo "Record Added...";
-}
-
-
-
-?>
