@@ -44,7 +44,7 @@ if (isset($s1)) {
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select Technology</label>
                 <select class="border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="" id="">
-                    <option value="">--Select--</option>
+                    <option value="" selected disabled>--Select--</option>
                     <option value="java">Java</option>
                     <option value="c">C</option>
                     <option value="c++">C++</option>
@@ -57,7 +57,7 @@ if (isset($s1)) {
             </div>
             <div class="flex flex-col">
                 <label class="text-md font-medium">Question</label>
-                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm" type="text" name="ques" placeholder="Enter question:" ></textarea>
+                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm" type="text" name="ques" placeholder="Enter question" ></textarea>
             </div>
             <div class="flex gap-3">
                 <div class="flex flex-col w-[50%]">
@@ -84,7 +84,7 @@ if (isset($s1)) {
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select the correct option</label>
                 <select class="border-1 border-gray-300 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" name="ans" id="">
-                    <option value="">--Select--</option>
+                    <option value="" disabled selected>--Select--</option>
                     <option value="OptA">Option A</option>
                     <option value="OptB">Option B</option>
                     <option value="OptC">Option C</option>
@@ -93,7 +93,7 @@ if (isset($s1)) {
                 <!-- <input class="border-1 p-1.5 rounded-sm" type="text" name="ans" placeholder="ans" /> -->
             </div>
             <div class="mt-3 flex justify-center gap-2">
-                <input class="px-25 py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md" type="submit" name="s1" value="Reset" />
+                <input class="px-25 py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md" type="reset" name="reset" value="Reset" />
                 <input class="px-25 py-2 bg-[#191c5c] text-white font-semibold rounded-md" type="submit" name="s1" value="Save" />
             </div>
 
