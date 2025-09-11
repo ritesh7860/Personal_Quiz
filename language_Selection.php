@@ -62,6 +62,7 @@ if (!isset($_SESSION['email'])) {
         <a href="quiz_1.php?tech=PHP" class="btn">PHP Language</a>
         <a href="quiz_1.php?tech=Java" class="btn">Java</a>
         <a href="quiz_1.php?tech=Python" class="btn">Python</a>
+        <a href="quiz_1.php?tech=Html" class="btn">HTML</a>
 
         <a href="Logout.php" class="logout">Logout</a>
     </div>
