@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 session_start();
 
@@ -6,49 +7,52 @@ session_start();
 $errorMsg = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Use explicit $_POST (don't use extract())
-    $umail = trim((string)($_POST['umail'] ?? ''));
-    $pass  = (string)($_POST['pass'] ?? '');
+  // Use explicit $_POST (don't use extract())
+  $umail = trim((string)($_POST['umail'] ?? ''));
+  $pass  = (string)($_POST['pass'] ?? '');
 
-    if ($umail === '' || $pass === '') {
-        $errorMsg = 'Email and password are required.';
+  if ($umail === '' || $pass === '') {
+    $errorMsg = 'Email and password are required.';
+  } else {
+    // Connect DB
+    $link = new mysqli('localhost', 'root', '', 'quiz');
+    if ($link->connect_error) {
+      $errorMsg = 'Database connection failed: ' . $link->connect_error;
     } else {
-        // Connect DB
-        $link = new mysqli('localhost', 'root', '', 'quiz');
-        if ($link->connect_error) {
-            $errorMsg = 'Database connection failed: ' . $link->connect_error;
-        } else {
-            // Prepared statement: fetch stored password for the email
-            $stmt = $link->prepare('SELECT email, password FROM regis WHERE email = ? LIMIT 1');
-            $stmt->bind_param('s', $umail);
-            $stmt->execute();
-            $res = $stmt->get_result();
+      // Prepared statement: fetch stored password for the email
+      $stmt = $link->prepare('SELECT email, password, role FROM regis WHERE email = ? LIMIT 1');
+      $stmt->bind_param('s', $umail);
+      $stmt->execute();
+      $res = $stmt->get_result();
 
-            if ($row = $res->fetch_assoc()) {
-                $stored = (string)$row['password'];
+      if ($row = $res->fetch_assoc()) {
+        $stored = (string)$row['password'];
 
-                // If passwords in DB are hashed use password_verify,
-                // otherwise (temporary) compare plaintext safely with hash_equals.
-                $isHashed = password_get_info($stored)['algo'] !== 0;
-                $ok = $isHashed ? password_verify($pass, $stored) : hash_equals($stored, $pass);
+        // If passwords in DB are hashed use password_verify,
+        // otherwise (temporary) compare plaintext safely with hash_equals.
+        $isHashed = password_get_info($stored)['algo'] !== 0;
+        $ok = $isHashed ? password_verify($pass, $stored) : hash_equals($stored, $pass);
 
-                if ($ok) {
-                    session_regenerate_id(true);
-                    $_SESSION['email'] = $umail;
-                    // Redirect to quiz page
-                    header('Location: language_Selection.php');
-                    exit();
-                } else {
-                    $errorMsg = 'Invalid email or password.';
-                }
-            } else {
-                $errorMsg = 'Invalid email or password.';
-            }
+        if ($ok) {
+          session_regenerate_id(true);
+          $_SESSION['email'] = $umail;
+          $_SESSION['role'] = $row['role'];  // ✅ store role in session
 
-            $stmt->close();
-            $link->close();
+          if ($row['role'] === 'admin') {
+            header('Location: manage_questions.php');
+          } else {
+            header('Location: language_Selection.php');
+          }
+          exit();
         }
+      } else {
+        $errorMsg = 'Invalid email or password.';
+      }
+
+      $stmt->close();
+      $link->close();
     }
+  }
 }
 ?>
 
@@ -64,11 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script type="text/javascript">
-
     function validateEmail(email) {
       // Simple email pattern
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-       return pattern.test(email);
+      return pattern.test(email);
     }
 
     function f1() {
@@ -81,11 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         emailInput.style.borderColor = 'red';
         result = false;
       } else if (!validateEmail(emailValue)) {
-          emailInput.style.borderColor = 'red';
-          document.getElementById('emailMsg').innerText = "Please enter a valid email address.";
-          result = false;
-      }
-      else {
+        emailInput.style.borderColor = 'red';
+        document.getElementById('emailMsg').innerText = "Please enter a valid email address.";
+        result = false;
+      } else {
         document.getElementById('umail').style.borderColor = '';
         emailMsg.innerText = "";
       }
@@ -100,24 +102,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     function resetBorder(element) {
-         element.style.borderColor = '';
-      }
+      element.style.borderColor = '';
+    }
 
-      function togglePassword() {
-         const password = document.getElementById("pass");
-         const eyeOpen = document.getElementById("eyeOpen");
-         const eyeClosed = document.getElementById("eyeClosed");
+    function togglePassword() {
+      const password = document.getElementById("pass");
+      const eyeOpen = document.getElementById("eyeOpen");
+      const eyeClosed = document.getElementById("eyeClosed");
 
-         if (password.type === "password") {
-            password.type = "text";
-            eyeOpen.classList.add("hidden");
-            eyeClosed.classList.remove("hidden");
-         } else {
-            password.type = "password";
-            eyeOpen.classList.remove("hidden");
-            eyeClosed.classList.add("hidden");
-         }
+      if (password.type === "password") {
+        password.type = "text";
+        eyeOpen.classList.add("hidden");
+        eyeClosed.classList.remove("hidden");
+      } else {
+        password.type = "password";
+        eyeOpen.classList.remove("hidden");
+        eyeClosed.classList.add("hidden");
       }
+    }
   </script>
 
   <style>
@@ -132,8 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-  <div class = "main flex h-screen flex-col justify-center items-start pl-36 p-4">
-    <form class = "form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm1" onsubmit="return f1()">
+  <div class="main flex h-screen flex-col justify-center items-start pl-36 p-4">
+    <form class="form px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm1" onsubmit="return f1()">
       <div class="flex justify-center">
         <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
       </div>
@@ -157,24 +159,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div style="display:flex; flex-direction:column;">
             <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter your password" name="pass" id="pass" onfocus="resetBorder(this)" />
             <!-- Eye Button -->
-               <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700 cursor-pointer">
-                  <!-- Eye Open -->
-                  <svg id="eyeClosed" class="hidden" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M2 11.98C8.09 1.31996 15.91 1.32996 22 11.98" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M22 12.01C15.91 22.67 8.09 22.66 2 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+            <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700 cursor-pointer">
+              <!-- Eye Open -->
+              <svg id="eyeClosed" class="hidden" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2 11.98C8.09 1.31996 15.91 1.32996 22 11.98" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M22 12.01C15.91 22.67 8.09 22.66 2 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
 
-                  <!-- Eye Closed -->
-                  <svg id="eyeOpen" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path d="M14.83 9.17999C14.2706 8.61995 13.5576 8.23846 12.7813 8.08386C12.0049 7.92926 11.2002 8.00851 10.4689 8.31152C9.73758 8.61453 9.11264 9.12769 8.67316 9.78607C8.23367 10.4444 7.99938 11.2184 8 12.01C7.99916 13.0663 8.41619 14.08 9.16004 14.83" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M12 16.01C13.0609 16.01 14.0783 15.5886 14.8284 14.8384C15.5786 14.0883 16 13.0709 16 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M17.61 6.39004L6.38 17.62C4.6208 15.9966 3.14099 14.0944 2 11.99C6.71 3.76002 12.44 1.89004 17.61 6.39004Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M20.9994 3L17.6094 6.39" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M6.38 17.62L3 21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                     <path d="M19.5695 8.42999C20.4801 9.55186 21.2931 10.7496 21.9995 12.01C17.9995 19.01 13.2695 21.4 8.76953 19.23" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-               </button>
+              <!-- Eye Closed -->
+              <svg id="eyeOpen" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.83 9.17999C14.2706 8.61995 13.5576 8.23846 12.7813 8.08386C12.0049 7.92926 11.2002 8.00851 10.4689 8.31152C9.73758 8.61453 9.11264 9.12769 8.67316 9.78607C8.23367 10.4444 7.99938 11.2184 8 12.01C7.99916 13.0663 8.41619 14.08 9.16004 14.83" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 16.01C13.0609 16.01 14.0783 15.5886 14.8284 14.8384C15.5786 14.0883 16 13.0709 16 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M17.61 6.39004L6.38 17.62C4.6208 15.9966 3.14099 14.0944 2 11.99C6.71 3.76002 12.44 1.89004 17.61 6.39004Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M20.9994 3L17.6094 6.39" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M6.38 17.62L3 21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M19.5695 8.42999C20.4801 9.55186 21.2931 10.7496 21.9995 12.01C17.9995 19.01 13.2695 21.4 8.76953 19.23" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -182,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class="p-2 pt-5">
         <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-35 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="logBtn" value="Sign in">
-        <p class="text-sm text-[#191c5c] p-3" > New to Quiz? <a href="Registration.php" class="text-blue-600">Create an account → </a></p>
+        <p class="text-sm text-[#191c5c] p-3"> New to Quiz? <a href="Registration.php" class="text-blue-600">Create an account → </a></p>
       </div>
     </form>
   </div>

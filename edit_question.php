@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Edit Question</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #eef2f7; padding: 30px; }
+        body { font-family: Arial, sans-serif; background: #eef2f7; padding: 30px; background-color: #191c5c;}
         .form-box { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         label { display: block; margin-top: 10px; font-weight: bold; }
         input, select { width: 100%; padding: 8px; margin-top: 5px; }

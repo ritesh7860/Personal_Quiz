@@ -1,46 +1,63 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!DOCTYPE lang="html">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-
-    <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
+<body class="bg-gray-100">
 
-<body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-inverse">
-            <ul class="nav navbar-nav">
-                <li><a href="login2.php">Home</a></li>
-                <li><a href="regis.php">Register</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">FAQ</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="">Logout</a></li>
-        </nav>
+  <!-- Navbar -->
+  <nav class="bg-[#191c5c] shadow-md fixed top-0 w-full h-[8vh] z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <img class="w-[50px] h-[50px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8">
+          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Home</a>
+          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">About</a>
+          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Services</a>
+          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Contact</a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-btn" class="text-gray-200 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" 
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" 
+                    d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
-    <center>
-        <img src="logo.jpeg" class="img-responsive" />
-    </center>
-    <center><a href="login.php"><img src="getstarted.jpg" width="300px" height="80px"></a></center>
 
-    <br /><br />
-    <br />
-    <marquee scrollamount="30" onmouseover="stop()" onmouseout="start()"><img src="tenor.gif" /></marquee>
-    </center>
-
-
+    <!-- Mobile Menu -->
+    <div id="menu" class="hidden md:hidden bg-[#191c5c] shadow-lg">
+      <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">Home</a>
+      <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">About</a>
+      <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">Services</a>
+      <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">Contact</a>
     </div>
-    </form>
-    </div>
+  </nav>
+
+  <script>
+    // Toggle Mobile Menu
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+
 </body>
-
 </html>
