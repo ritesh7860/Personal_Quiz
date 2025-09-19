@@ -1,4 +1,5 @@
 <?php
+include 'welcome.php';
 if (isset($_POST['s1'])) {
     $ques = $_POST['ques'];
     $a = $_POST['a'];
@@ -40,7 +41,7 @@ if (isset($_POST['s1'])) {
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         body{
-            background-color: #191c5c;
+            background-color:rgba(230, 251, 255, 0.88);
             /* background-color: #000; */
             /* color: #e6e6ee; */
         }
@@ -48,15 +49,15 @@ if (isset($_POST['s1'])) {
 </head>
 
 <body>
-    <div class="flex w-screen h-[8%] justify-between items-center bg-[#e6e6e6] px-5 py-3">
+    <!-- <div class="flex w-screen h-[8%] justify-between items-center bg-[#e6e6e6] px-5 py-3">
         <div>
             <img class="w-[40px] h-[40px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
         </div>
         <div>
             <p class="text-[#191c5c] font-medium">Admin Login</p>
         </div>
-    </div>
-    <div class="flex flex-col h-[88%] w-screen justify-center items-center">
+    </div> -->
+    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[12%]">
         <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select Technology</label>

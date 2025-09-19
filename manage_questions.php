@@ -83,6 +83,7 @@ if ($tech) {
         th {
             background: #191c5c;
             color: white;
+            position: sticky;
         }
 
         tr:hover {
@@ -107,6 +108,21 @@ if ($tech) {
             padding: 6px;
             margin-bottom: 10px;
         }
+        #header{
+            position: fixed;
+            width: 98vw;
+            height: 8vh;
+            top: 8vh;
+            background-color: white;
+            padding: 10px;
+        }
+        .table-header{
+            position: sticky;
+            top: 6vh;
+        }
+        .table-content{
+            margin-top: 6vh;
+        }
     </style>
 </head>
 
@@ -116,7 +132,7 @@ if ($tech) {
 
         <!-- Technology Filter -->
         <form method="get" action="">
-            <div class="flex justify-between">
+            <div class="flex justify-between items-center" id="header">
                 <h1 class="text-2xl font-medium">Manage Questions</h1>
                 <div>
                     <label class="text-xl font-medium">Select Technology:</label>
@@ -132,28 +148,30 @@ if ($tech) {
             </div>
         </form>
 
-        <table>
+        <table class="table-header">
             <tr>
-                <th>ID</th>
-                <th>Question</th>
-                <th>Options</th>
-                <th>Answer</th>
-                <th>Technology</th>
-                <th>Actions</th>
+                <th class="w-[5%]">ID</th>
+                <th class="w-[45%]">Question</th>
+                <th class="w-[25%]">Options</th>
+                <th class="w-[8%]">Answer</th>
+                <th class="w-[10%]">Technology</th>
+                <th class="w-[10%]">Actions</th>
             </tr>
+            </table>
+            <table class="table-content">
             <?php while ($row = mysqli_fetch_assoc($resultset)): ?>
                 <tr>
-                    <td><?= $row['qid'] ?></td>
-                    <td><?= htmlspecialchars($row['qns']) ?></td>
-                    <td>
+                    <td class="w-[5%]"><?= $row['qid'] ?></td>
+                    <td class="w-[45%]"><?= htmlspecialchars($row['qns']) ?></td>
+                    <td class="w-[25%]">
                         A: <?= htmlspecialchars($row['OptA']) ?><br>
                         B: <?= htmlspecialchars($row['OptB']) ?><br>
                         C: <?= htmlspecialchars($row['OptC']) ?><br>
                         D: <?= htmlspecialchars($row['OptD']) ?>
                     </td>
-                    <td><b><?= htmlspecialchars($row['ans']) ?></b></td>
-                    <td><?= htmlspecialchars($row['technology']) ?></td>
-                    <td class="actions">
+                    <td class="w-[8%]"><b><?= htmlspecialchars($row['ans']) ?></b></td>
+                    <td class="w-[10%]"><?= htmlspecialchars($row['technology']) ?></td>
+                    <td class="actions w-[10%]">
                         <a class="edit" href="edit_question.php?qid=<?= $row['qid'] ?>">✏️</a>
                         <a class="delete" href="?delete=<?= $row['qid'] ?>&tech=<?= urlencode($tech) ?>"
                             onclick="return confirm('Are you sure you want to delete this question?');">🗑️</a>
