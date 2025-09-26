@@ -54,7 +54,7 @@ if ($tech) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            /* background: #f4f6f9; */
+            background: #fff;
             margin: 0;
             padding: 0;
         }
@@ -62,7 +62,6 @@ if ($tech) {
         .main {
             background: #fff;
             width: 100%;
-            height: 92vh;
             padding: 20px;
             margin-top: 70px;
             overflow-y: scroll;
@@ -108,34 +107,22 @@ if ($tech) {
             padding: 6px;
             margin-bottom: 10px;
         }
-        #header{
-            position: fixed;
-            width: 98vw;
-            height: 8vh;
-            top: 8vh;
-            background-color: white;
-            padding: 10px;
-        }
         .table-header{
-            position: sticky;
-            top: 6vh;
+            /* position: sticky; */
+            /* top: 6vh; */
         }
-        .table-content{
-            margin-top: 6vh;
-        }
+
     </style>
 </head>
 
 <body class="bg-gray-700">
-    <div class="main">
-
-
+    <div class="main xl:overflow-y-hidden h-[88vh] 2xl:h-[90vh]">
         <!-- Technology Filter -->
         <form method="get" action="">
-            <div class="flex justify-between items-center" id="header">
+            <div class="flex justify-between items-center fixed bg-white w-[97%] h-[10vh] 2xl:h-[8vh] top-[10vh] 2xl:top-[8vh] pr-3" id="">
                 <h1 class="text-2xl font-medium">Manage Questions</h1>
                 <div>
-                    <label class="text-xl font-medium">Select Technology:</label>
+                    <label class="text-xl text-justify font-medium">Select Technology:</label>
                     <select class="border-2 border-gray-300 rounded-md px-2" name="tech" onchange="this.form.submit()"> 
                         <option value="">-- All --</option>
                         <?php foreach ($technologies as $t): ?>
@@ -148,7 +135,7 @@ if ($tech) {
             </div>
         </form>
 
-        <table class="table-header">
+        <table class="table-header sticky top-[5vh] 2xl:top-[4vh]">
             <tr>
                 <th class="w-[5%]">ID</th>
                 <th class="w-[45%]">Question</th>
@@ -158,7 +145,7 @@ if ($tech) {
                 <th class="w-[10%]">Actions</th>
             </tr>
             </table>
-            <table class="table-content">
+            <table class="table-content mt-[6vh] 2xl:mt-[4vh]">
             <?php while ($row = mysqli_fetch_assoc($resultset)): ?>
                 <tr>
                     <td class="w-[5%]"><?= $row['qid'] ?></td>

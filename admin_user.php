@@ -63,7 +63,6 @@ if ($q !== '') {
 
         a {
             text-decoration: none;
-            margin: 0 5px;
         }
 
         .no-results {
@@ -79,7 +78,7 @@ if ($q !== '') {
 </head>
 
 <body>
-    <div class="mt-[10vh] p-4">
+    <div class="mt-[10vh] 2xl:mt-[8vh] p-4">
         <div class="flex items-center justify-between">
             <h1 class="text-center text-2xl font-semibold pt-2">Manage Users</h1>
 
