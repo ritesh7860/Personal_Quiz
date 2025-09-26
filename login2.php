@@ -149,7 +149,7 @@ if (isset($logBtn)) {
 
       <div class="p-2 pt-5">
         <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-35 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="logBtn" value="Sign in">
-        <p class="text-sm text-[#191c5c] p-3" > New to Quiz? <a href="regis.php" class="text-blue-600">Create an account → </a></p>
+        <p class="text-sm text-[#191c5c] p-3" > New to Quiz? <a href="Registration.php" class="text-blue-600">Create an account → </a></p>
       </div>
     </form>
   </div>

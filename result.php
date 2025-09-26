@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['questions']) || !isset($_SESSION['email'])) {
-    header("Location: login2.php");
+    header("Location: Login.php");
     exit;
 }
 
@@ -37,7 +37,7 @@ unset($_SESSION['correct']);
     <title>Quiz Result</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            background: #191c5c;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
