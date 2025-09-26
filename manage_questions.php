@@ -107,10 +107,6 @@ if ($tech) {
             padding: 6px;
             margin-bottom: 10px;
         }
-        .table-header{
-            /* position: sticky; */
-            /* top: 6vh; */
-        }
 
     </style>
 </head>
@@ -119,7 +115,7 @@ if ($tech) {
     <div class="main xl:overflow-y-hidden h-[88vh] 2xl:h-[90vh]">
         <!-- Technology Filter -->
         <form method="get" action="">
-            <div class="flex justify-between items-center fixed bg-white w-[97%] h-[10vh] 2xl:h-[8vh] top-[10vh] 2xl:top-[8vh] pr-3" id="">
+            <div class="flex justify-between items-center fixed bg-white w-[97%] h-[10vh] 2xl:h-[8vh] top-[10vh] 2xl:top-[8vh] pr-3 2xl:pr-0 " id="">
                 <h1 class="text-2xl font-medium">Manage Questions</h1>
                 <div>
                     <label class="text-xl text-justify font-medium">Select Technology:</label>
@@ -135,7 +131,7 @@ if ($tech) {
             </div>
         </form>
 
-        <table class="table-header sticky top-[5vh] 2xl:top-[4vh]">
+        <table class="table-header sticky top-[5vh] 2xl:top-[5vh]">
             <tr>
                 <th class="w-[5%]">ID</th>
                 <th class="w-[45%]">Question</th>
