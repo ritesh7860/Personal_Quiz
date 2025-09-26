@@ -12,6 +12,7 @@ $users = $link->query("SELECT name, email, role FROM regis ORDER BY role, name")
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Manage Users</title>
     <style>
@@ -20,39 +21,59 @@ $users = $link->query("SELECT name, email, role FROM regis ORDER BY role, name")
             width: 70%;
             margin: 30px auto;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #aaa;
             padding: 10px;
             text-align: left;
         }
-        th { background: #f4f4f4; }
-        a { text-decoration: none; margin: 0 5px; }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        a {
+            text-decoration: none;
+            margin: 0 5px;
+        }
     </style>
 </head>
-<body>
-    <h1 style="text-align:center;">Manage Users</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-        <?php while ($row = $users->fetch_assoc()): ?>
-            <tr>
-                <td><?= htmlspecialchars($row['name']) ?></td>
-                <td><?= htmlspecialchars($row['email']) ?></td>
-                <td><?= htmlspecialchars($row['role']) ?></td>
-                <td>
-                    <a href="edit_user.php?email=<?= urlencode($row['email']) ?>">✏ Edit</a>
-                    <a href="delete_user.php?email=<?= urlencode($row['email']) ?>" onclick="return confirm('Are you sure?')">🗑 Delete</a>
-                </td>
-            </tr>
-        <?php endwhile; ?>
-    </table>
 
-    <p style="text-align:center;">
-        <a href="add_user.php">➕ Add New User</a>
-    </p>
+<body>
+    <div class="mt-[10vh] p-4">
+        <div class="flex items-center justify-between">
+            <h1 class="text-center text-2xl font-semibold pt-2">Manage Users</h1>
+            <div>
+                <input type="search" name="" id="" placeholder="Search using Name/Email" class="border-1 border-gray-400 rounded-full py-1 px-2 ">
+            </div>
+            <div>
+                <a href="add_user.php" class="px-3 py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer">Add New User</a>
+            </div>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+                <?php while ($row = $users->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['name']) ?></td>
+                        <td><?= htmlspecialchars($row['email']) ?></td>
+                        <td><?= htmlspecialchars($row['role']) ?></td>
+                        <td>
+                            <a href="edit_user.php?email=<?= urlencode($row['email']) ?>">✏ Edit</a>
+                            <a href="delete_user.php?email=<?= urlencode($row['email']) ?>" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    </div>
+
 </body>
+
 </html>
