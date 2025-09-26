@@ -129,7 +129,7 @@
             </div>
          <div>
             <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-30 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create Account"><BR />
-            <p class="text-sm text-[#191c5c] p-3"> Already have an account?  <a href="login2.php" class="text-blue-600"> Sign in → </a></p>
+            <p class="text-sm text-[#191c5c] p-3"> Already have an account?  <a href="Login.php" class="text-blue-600"> Sign in → </a></p>
          </div>
       </form>
    </div>
