@@ -42,8 +42,14 @@ $users = $link->query("SELECT name, email, role FROM regis ORDER BY role, name")
 
 <body>
     <div class="mt-[10vh] p-4">
-        <div>
-            <h1 style="text-align:center;">Manage Users</h1>
+        <div class="flex items-center justify-between">
+            <h1 class="text-center text-2xl font-semibold pt-2">Manage Users</h1>
+            <div>
+                <input type="search" name="" id="" placeholder="Search using Name/Email" class="border-1 border-gray-400 rounded-full py-1 px-2 ">
+            </div>
+            <div>
+                <a href="add_user.php" class="px-3 py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer">Add New User</a>
+            </div>
         </div>
         <div>
             <table>
@@ -68,9 +74,6 @@ $users = $link->query("SELECT name, email, role FROM regis ORDER BY role, name")
         </div>
     </div>
 
-    <p style="text-align:center;">
-        <a href="add_user.php">➕ Add New User</a>
-    </p>
 </body>
 
 </html>
