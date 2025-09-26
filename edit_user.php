@@ -1,9 +1,9 @@
 <?php
 session_start();
-// if (!isset($_SESSION['email']) || ($_SESSION['role'] ?? '') !== 'admin') {
-//     header("Location: login.php");
-//     exit();
-// }
+if (!isset($_SESSION['email']) || ($_SESSION['role'] ?? '') !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
 
 $link = new mysqli('localhost', 'root', '', 'quiz');
 if ($link->connect_error) {

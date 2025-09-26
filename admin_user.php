@@ -1,10 +1,10 @@
 <?php
 include 'welcome.php';
 session_start();
-// if (!isset($_SESSION['email']) || ($_SESSION['role'] ?? '') !== 'admin') {
-//     header("Location: Login.php");
-//     exit();
-// }
+if (!isset($_SESSION['email']) || ($_SESSION['role'] ?? '') !== 'admin') {
+    header("Location: Login.php");
+    exit();
+}
 
 $link = new mysqli('localhost', 'root', '', 'quiz');
 $users = $link->query("SELECT name, email, role FROM regis ORDER BY role, name");

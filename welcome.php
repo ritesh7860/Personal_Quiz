@@ -23,8 +23,11 @@
         <div class="hidden md:flex space-x-8">
           <a href="insert.php" class="text-gray-200 hover:text-blue-600 font-semibold">Home</a>
           <a href="manage_questions.php" class="text-gray-200 hover:text-blue-600 font-semibold">Questions</a>
-          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Services</a>
+          <a href="admin_user.php" class="text-gray-200 hover:text-blue-600 font-semibold">Users</a>
           <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Contact</a>
+        </div>
+        <div>
+          <a href="Logout.php" class="text-gray-200 hover:text-blue-600 font-semibold">Logout</a>
         </div>
 
         <!-- Mobile Hamburger -->
