@@ -49,19 +49,12 @@ if (isset($_POST['s1'])) {
 </head>
 
 <body>
-    <!-- <div class="flex w-screen h-[8%] justify-between items-center bg-[#e6e6e6] px-5 py-3">
-        <div>
-            <img class="w-[40px] h-[40px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
-        </div>
-        <div>
-            <p class="text-[#191c5c] font-medium">Admin Login</p>
-        </div>
-    </div> -->
-    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[12%]">
+    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[8%]">
+    <h2 class="font-medium text-[26px] mb-[20px]">Create Questions</h2>
         <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select Technology</label>
-                <select class="border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="tech" required>
+                <select class="cursor-pointer border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="tech" required>
                     <option value="" selected disabled>--Select--</option>
                     <option value="Java">Java</option>
                     <option value="C">C</option>
@@ -98,7 +91,7 @@ if (isset($_POST['s1'])) {
             
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select the correct option</label>
-                <select class="border-1 border-gray-300 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" name="ans" required>
+                <select class=" cursor-pointer border-1 border-gray-400 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" name="ans" required>
                     <option value="" disabled selected>--Select--</option>
                     <option value="OptA">Option A</option>
                     <option value="OptB">Option B</option>

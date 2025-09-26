@@ -21,8 +21,8 @@
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-8">
-          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Home</a>
-          <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">About</a>
+          <a href="insert.php" class="text-gray-200 hover:text-blue-600 font-semibold">Home</a>
+          <a href="manage_questions.php" class="text-gray-200 hover:text-blue-600 font-semibold">Questions</a>
           <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Services</a>
           <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Contact</a>
         </div>
