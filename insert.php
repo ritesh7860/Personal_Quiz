@@ -49,7 +49,7 @@ if (isset($_POST['s1'])) {
 </head>
 
 <body>
-    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[8%]">
+    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
     <h2 class="font-medium text-[26px] mb-[20px]">Create Questions</h2>
         <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
             <div class="flex flex-col">
