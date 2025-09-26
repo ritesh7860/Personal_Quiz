@@ -26,7 +26,7 @@
           <a href="admin_user.php" class="text-gray-200 hover:text-blue-600 font-semibold">Users</a>
           <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Contact</a>
         </div>
-        <div>
+        <div class="hidden md:flex space-x-8">
           <a href="Logout.php" class="text-gray-200 hover:text-blue-600 font-semibold">Logout</a>
         </div>
 
@@ -49,6 +49,7 @@
       <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">About</a>
       <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">Services</a>
       <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">Contact</a>
+      <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-100 font-semibold">Logout</a>
     </div>
   </nav>
 

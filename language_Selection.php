@@ -14,17 +14,19 @@ if (!isset($_SESSION['email'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            background: #191c5c;
             text-align: center;
             padding: 50px;
         }
         .container {
             background: white;
+            margin-top: 8%;
+            margin-left: 36%;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             padding: 40px;
             width: 400px;
-            margin: auto;
+            /* margin: auto; */
         }
         h2 {
             margin-bottom: 20px;

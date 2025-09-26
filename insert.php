@@ -101,8 +101,8 @@ if (isset($_POST['s1'])) {
                 <!-- <input class="border-1 p-1.5 rounded-sm" type="text" name="ans" placeholder="ans" /> -->
             </div>
             <div class="mt-3 flex justify-center gap-2">
-                <input class="px-25 py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer" type="reset" name="reset" value="Reset" />
-                <input class="px-25 py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" type="submit" name="s1" value="Save" />
+                <input class="px-[10%] py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer" type="reset" name="reset" value="Reset" />
+                <input class="px-[10%] py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" type="submit" name="s1" value="Save" />
             </div>
 
         </form>

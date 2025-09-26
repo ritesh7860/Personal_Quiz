@@ -78,7 +78,7 @@ $question = $questions[$current];
     <title>Quiz</title>
     <style>
         body {
-            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            background: #191c5c;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
