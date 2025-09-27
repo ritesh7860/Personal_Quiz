@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $errorMsg = 'Database connection failed: ' . $link->connect_error;
     } else {
       // Prepared statement: fetch stored password for the email
-      $stmt = $link->prepare('SELECT email, password, role FROM regis WHERE email = ? LIMIT 1');
+      $stmt = $link->prepare('SELECT name, email, password, role FROM regis WHERE email = ? LIMIT 1');
       $stmt->bind_param('s', $umail);
       $stmt->execute();
       $res = $stmt->get_result();
@@ -37,9 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           session_regenerate_id(true);
           $_SESSION['email'] = $umail;
           $_SESSION['role'] = $row['role'];  // ✅ store role in session
+          $_SESSION['name'] = $row['name'];
 
           if ($row['role'] === 'admin') {
-            header('Location: manage_questions.php');
+            header('Location: admin_dashboard.php');
           } else {
             header('Location: language_Selection.php');
           }
