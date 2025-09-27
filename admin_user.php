@@ -44,10 +44,14 @@ if ($q !== '') {
 <head>
     <title>Manage Users</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+        body{
+            font-family: "Inter Tight", sans-serif;
+        }
         table {
             border-collapse: collapse;
-            width: 70%;
-            margin: 30px auto;
+            /* width: 70%; */
+            /* margin: 30px auto; */
         }
 
         th,
@@ -57,8 +61,8 @@ if ($q !== '') {
             text-align: left;
         }
 
-        th {
-            background: #f4f4f4;
+        th:last-child {
+            text-align: center;
         }
 
         a {
@@ -70,38 +74,36 @@ if ($q !== '') {
             color: #555;
             margin-top: 14px;
         }
-
-        .search-box {
-            display: inline-block;
-        }
+  
     </style>
 </head>
 
 <body>
-    <div class="mt-[10vh] 2xl:mt-[8vh] p-4">
-        <div class="flex items-center justify-between">
-            <h1 class="text-center text-2xl font-semibold pt-2">Manage Users</h1>
+    <div class="mt-[50px]">
+        <div class="flex gap-4 md:flex-row md:w-full items-center justify-between p-4">
+            <h1 class="hidden md:block text-center text-2xl font-semibold">Manage Users</h1>
 
             <!-- Search form (method GET) -->
-            <div class="search-box">
+            <div class="w-[300px] md:w-[500px]">
                 <form method="get" action="">
-                    <input type="search" name="q" id="q" placeholder="Search using Name/Email" 
-                           class="border-1 border-gray-400 rounded-full py-1 px-2"
+                    <input type="text" name="q" id="q" placeholder="Search using name/email" 
+                           class="border-1 border-gray-400 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
                            value="<?= htmlspecialchars($q, ENT_QUOTES) ?>" />
-                    <button type="submit">Search</button>
                     <?php if ($q !== ''): ?>
-                        <a href="admin_user.php" style="margin-left:8px;">Reset</a>
+                        <a href="admin_user.php" class="cursor-pointer font-bold p-2">x</a>
                     <?php endif; ?>
                 </form>
             </div>
 
             <div>
-                <a href="add_user.php" class="px-3 py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer">Add New User</a>
+                <a href="add_user.php" class="px-3 py-2 bg-[#191c5c] hidden xl:block text-white font-semibold rounded-md cursor-pointer">Add New User</a>
+                <a href="add_user.php" class="px-3 py-2 bg-[#191c5c] xl:hidden text-white font-semibold rounded-md cursor-pointer">Add</a>
             </div>
         </div>
-        <div>
-            <table>
-                <tr>
+        <div class="w-full bg-gray-400 h-[1.2px]"></div>
+        <div class="overflow-x-scroll md:overflow-x-hidden py-8 px-4 flex md:justify-center">
+            <table class="w-[70%]">
+                <tr class="bg-[#191c5c] text-gray-100">
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
@@ -115,12 +117,12 @@ if ($q !== '') {
                 <?php else: ?>
                     <?php while ($row = $users->fetch_assoc()): ?>
                         <tr>
-                            <td><?= htmlspecialchars($row['name']) ?></td>
-                            <td><?= htmlspecialchars($row['email']) ?></td>
-                            <td><?= htmlspecialchars($row['role']) ?></td>
-                            <td>
-                                <a href="edit_user.php?email=<?= urlencode($row['email']) ?>">✏ Edit</a>
-                                <a href="delete_user.php?email=<?= urlencode($row['email']) ?>" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                            <td class="min-w-[150px]"><?= htmlspecialchars($row['name']) ?></td>
+                            <td class="min-w-[250px]"><?= htmlspecialchars($row['email']) ?></td>
+                            <td class="min-w-[120px]"><?= htmlspecialchars($row['role']) ?></td> <!--✏-->
+                            <td class="min-w-[180px] flex gap-3 font-medium text-center justify-center items-center">
+                                <a class="text-[#191c5c]" href="edit_user.php?email=<?= urlencode($row['email']) ?>"> ✏️ Edit</a>
+                                <a class="text-red-500" href="delete_user.php?email=<?= urlencode($row['email']) ?>" onclick="return confirm('Are you sure?')">🗑 Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>

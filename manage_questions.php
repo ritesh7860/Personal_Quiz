@@ -52,18 +52,19 @@ if ($tech) {
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
         body {
-            font-family: Arial, sans-serif;
             background: #fff;
             margin: 0;
             padding: 0;
+            font-family: "Inter Tight", sans-serif;
         }
 
         .main {
             background: #fff;
-            width: 100%;
-            padding: 20px;
-            margin-top: 70px;
+            /* width: 100%; */
+            /* padding: 20px; */
+            /* margin-top: 70px; */
             overflow-y: scroll;
         }
         table {
@@ -106,19 +107,16 @@ if ($tech) {
         select {
             padding: 6px;
             margin-bottom: 10px;
-        }
-        .table-content{
-            margin-top: 30px;
-        }
+        }   
 
     </style>
 </head>
 
 <body class="bg-gray-700">
-    <div class="main xl:overflow-y-hidden h-[88vh] 2xl:h-[90vh]">
+    <div class="main xl:overflow-y-hidden h-[88vh] w-[100vw] p-4 mt-[60px]">
         <!-- Technology Filter -->
         <form method="get" action="">
-            <div class="flex justify-between items-center fixed bg-white w-[97%] h-[10vh] 2xl:h-[8vh] top-[10vh] 2xl:top-[8vh] pr-3 2xl:pr-0 " id="">
+            <div class="flex justify-between items-center fixed bg-white w-[97%] h-[50px] min-h-[50px] top-[60px]">
                 <h1 class="text-2xl hidden md:block font-medium">Manage Questions</h1>
                 <div>
                     <label class="text-xl text-justify font-medium">Select Technology:</label>
@@ -134,7 +132,7 @@ if ($tech) {
             </div>
         </form>
 
-        <table class="table-header sticky top-[5vh] 2xl:top-[5vh] overflow-y-scroll">
+        <table class="table-header sticky top-[35px] mt-[100px] overflow-y-scroll">
             <tr>
                 <th class="w-[5%]">ID</th>
                 <th class="w-[45%] min-w-[250px]">Question</th>
@@ -144,7 +142,7 @@ if ($tech) {
                 <th class="w-[10%] min-w-[100px]">Actions</th>
             </tr>
             </table>
-            <table class="table-content mt-[6vh] 2xl:mt-[4vh] overflow-y-scroll">
+            <table class="table-content overflow-y-scroll">
             <?php while ($row = mysqli_fetch_assoc($resultset)): ?>
                 <tr>
                     <td class="w-[5%]"><?= $row['qid'] ?></td>
