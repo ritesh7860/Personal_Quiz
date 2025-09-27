@@ -24,7 +24,7 @@ if (!isset($_SESSION['questions'])) {
     $_SESSION['tech'] = $tech;
 
     // Fetch 20 random questions of selected technology
-    $stmt = $link->prepare("SELECT * FROM question WHERE technology=? ORDER BY RAND() LIMIT 20");
+    $stmt = $link->prepare("SELECT * FROM question WHERE technology=? ORDER BY RAND() LIMIT 10");
     $stmt->bind_param("s", $tech);
     $stmt->execute();
     $resultset = $stmt->get_result();

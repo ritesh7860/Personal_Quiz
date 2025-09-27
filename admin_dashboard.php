@@ -1,7 +1,6 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
 session_start();
+include 'welcome.php';
 
 // Only allow logged-in admins
 if (!isset($_SESSION['email']) || ($_SESSION['role'] ?? '') !== 'admin') {
@@ -36,7 +35,7 @@ $recentQuestions = $link->query("SELECT qns, technology FROM question ORDER BY q
 
 <body class="bg-gray-100 min-h-screen">
     <!-- Navbar -->
-    <header class="bg-[#191c5c] text-white shadow-md">
+    <!-- <header class="bg-[#191c5c] text-white shadow-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold">Admin Dashboard</h1>
             <div class="flex items-center gap-4">
@@ -44,10 +43,10 @@ $recentQuestions = $link->query("SELECT qns, technology FROM question ORDER BY q
                 <a href="Logout.php" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
             </div>
         </div>
-    </header>
+    </header> -->
 
     <!-- Main -->
-    <main class="max-w-7xl mx-auto px-6 py-8">
+    <main class="max-w-7xl mx-auto px-6 py-8 mt-[80px]">
         <!-- Overview Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
