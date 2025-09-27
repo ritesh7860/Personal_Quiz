@@ -116,7 +116,7 @@ if ($tech) {
         <!-- Technology Filter -->
         <form method="get" action="">
             <div class="flex justify-between items-center fixed bg-white w-[97%] h-[10vh] 2xl:h-[8vh] top-[10vh] 2xl:top-[8vh] pr-3 2xl:pr-0 " id="">
-                <h1 class="text-2xl font-medium">Manage Questions</h1>
+                <h1 class="text-2xl hidden md:block font-medium">Manage Questions</h1>
                 <div>
                     <label class="text-xl text-justify font-medium">Select Technology:</label>
                     <select class="border-2 border-gray-300 rounded-md px-2" name="tech" onchange="this.form.submit()"> 
@@ -131,21 +131,21 @@ if ($tech) {
             </div>
         </form>
 
-        <table class="table-header sticky top-[5vh] 2xl:top-[5vh]">
+        <table class="table-header sticky top-[5vh] 2xl:top-[5vh] overflow-y-scroll">
             <tr>
                 <th class="w-[5%]">ID</th>
-                <th class="w-[45%]">Question</th>
-                <th class="w-[25%]">Options</th>
-                <th class="w-[8%]">Answer</th>
-                <th class="w-[10%]">Technology</th>
-                <th class="w-[10%]">Actions</th>
+                <th class="w-[45%] min-w-[250px]">Question</th>
+                <th class="w-[25%] min-w-[200px]">Options</th>
+                <th class="w-[8%] min-w-[80px]">Answer</th>
+                <th class="w-[10%] min-w-[100px]">Technology</th>
+                <th class="w-[10%] min-w-[100px]">Actions</th>
             </tr>
             </table>
-            <table class="table-content mt-[6vh] 2xl:mt-[4vh]">
+            <table class="table-content mt-[6vh] 2xl:mt-[4vh] overflow-y-scroll">
             <?php while ($row = mysqli_fetch_assoc($resultset)): ?>
                 <tr>
                     <td class="w-[5%]"><?= $row['qid'] ?></td>
-                    <td class="w-[45%]"><?= htmlspecialchars($row['qns']) ?></td>
+                    <td class="w-[45%] min-w-[250px]"><?= htmlspecialchars($row['qns']) ?></td>
                     <td class="w-[25%]">
                         A: <?= htmlspecialchars($row['OptA']) ?><br>
                         B: <?= htmlspecialchars($row['OptB']) ?><br>
