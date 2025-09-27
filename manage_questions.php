@@ -107,6 +107,9 @@ if ($tech) {
             padding: 6px;
             margin-bottom: 10px;
         }
+        .table-content{
+            margin-top: 30px;
+        }
 
     </style>
 </head>

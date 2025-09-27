@@ -78,7 +78,7 @@ $recentQuestions = $link->query("SELECT qns, technology FROM question ORDER BY q
                 <h3 class="text-lg font-bold text-[#191c5c]">👥 Manage Users</h3>
                 <p class="text-gray-600 mt-2">Add, edit or delete users.</p>
             </a>
-            <a href="questions.php" class="bg-white rounded-xl p-6 shadow hover:bg-blue-50 transition">
+            <a href="manage_questions.php" class="bg-white rounded-xl p-6 shadow hover:bg-blue-50 transition">
                 <h3 class="text-lg font-bold text-[#191c5c]">📘 Manage Questions</h3>
                 <p class="text-gray-600 mt-2">View, edit and add quiz questions.</p>
             </a>
