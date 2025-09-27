@@ -1,5 +1,11 @@
+<?php
+session_start();
+$adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +13,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
+
 <body class="bg-gray-100">
 
   <!-- Navbar -->
-  <nav class="bg-[#191c5c] shadow-md fixed top-0 w-full h-[10vh] 2xl:h-[8vh] z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        
+  <nav class="bg-[#191c5c] shadow-md fixed top-0 w-full h-[10vh] 2xl:h-[8vh] min-h-[50px] z-10">
+    <div class="px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center  min-h-[50px] h-[10vh] 2xl:h-[8vh]">
+
         <!-- Logo -->
-        <div class="flex-shrink-0">
-          <img class="w-[50px] h-[50px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
+        <div class="w-[100px] flex">
+          <img class="w-[50%] h-[50%] min-h-[50px] min-w-[50px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
         </div>
 
         <!-- Desktop Menu -->
@@ -26,17 +33,19 @@
           <a href="admin_user.php" class="text-gray-200 hover:text-blue-600 font-semibold">Users</a>
           <a href="#" class="text-gray-200 hover:text-blue-600 font-semibold">Contact</a>
         </div>
-        <div class="hidden md:flex" class="hidden md:flex space-x-8">
-          <a href="Logout.php" class="text-gray-200 hover:text-blue-600 font-semibold">Logout</a>
+
+        <div class="hidden md:flex space-x-8">
+          <span class="text-gray-200">Welcome, <?= htmlspecialchars($adminName) ?> 👋</span>
+          <a href="Logout.php" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
         </div>
 
         <!-- Mobile Hamburger -->
         <div class="md:hidden flex items-center">
           <button id="menu-btn" class="text-gray-200 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" 
-                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" 
-                    d="M4 6h16M4 12h16M4 18h16"></path>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
@@ -65,4 +74,5 @@
   </script>
 
 </body>
+
 </html>
