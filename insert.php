@@ -1,5 +1,6 @@
 <?php
 include 'welcome.php';
+
 if (isset($_POST['s1'])) {
     $ques = $_POST['ques'];
     $a = $_POST['a'];
@@ -36,79 +37,103 @@ if (isset($_POST['s1'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WIN OR BOOZE</title>
-    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body{
-            background-color:rgba(230, 251, 255, 0.88);
-            /* background-color: #000; */
-            /* color: #e6e6ee; */
+        body {
+            background-color: rgba(230, 251, 255, 0.88);
         }
     </style>
 </head>
 
 <body>
     <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
-    <h2 class="font-medium text-[26px] mb-[20px]">Create Questions</h2>
+        <h2 class="font-medium text-[26px] mb-[20px]">Create Questions</h2>
+        
         <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
+            
+            <!-- Technology Dropdown -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select Technology</label>
                 <select class="cursor-pointer border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="tech" required>
                     <option value="" selected disabled>--Select--</option>
-                    <option value="Java">Java</option>
-                    <option value="C">C</option>
-                    <option value="PHP">PHP</option>
-                    <option value="Python">Python</option>
-                    <option value="Html">HTML</option>
+                    <?php
+                    $link = mysqli_connect("localhost", "root", "", "quiz");
+                    if (!$link) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+
+                    $techQuery = "SELECT tech_name FROM technologies ORDER BY tech_name ASC";
+                    $techResult = mysqli_query($link, $techQuery);
+
+                    if ($techResult && mysqli_num_rows($techResult) > 0) {
+                        while ($row = mysqli_fetch_assoc($techResult)) {
+                            echo "<option value='" . htmlspecialchars($row['tech_name']) . "'>" . htmlspecialchars($row['tech_name']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value='' disabled>No Technologies Found</option>";
+                    }
+                    mysqli_close($link);
+                    ?>
                 </select>
             </div>
+
+            <!-- Question -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Question</label>
-                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm" type="text" name="ques" placeholder="Enter question" required></textarea>
+                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm" 
+                          name="ques" placeholder="Enter question" required></textarea>
             </div>
+
+            <!-- Options A & B -->
             <div class="flex gap-3">
                 <div class="flex flex-col w-[50%]">
                     <label class="text-md font-medium">Option A</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" type="text" name="a" placeholder="Enter option" required />
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                           type="text" name="a" placeholder="Enter option" required />
                 </div>
                 <div class="flex flex-col w-[50%]">
                     <label class="text-md font-medium">Option B</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" type="text" name="b" placeholder="Enter option" required />
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                           type="text" name="b" placeholder="Enter option" required />
                 </div>
             </div>
+
+            <!-- Options C & D -->
             <div class="flex gap-3">
                 <div class="flex flex-col w-[50%]">
                     <label class="text-md font-medium">Option C</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" type="text" name="c" placeholder="Enter option" required />
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                           type="text" name="c" placeholder="Enter option" required />
                 </div>
                 <div class="flex flex-col w-[50%]">
                     <label class="text-md font-medium">Option D</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" type="text" name="d" placeholder="Enter option" required />
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                           type="text" name="d" placeholder="Enter option" required />
                 </div>
             </div>
             
-            
+            <!-- Correct Answer -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select the correct option</label>
-                <select class=" cursor-pointer border-1 border-gray-400 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" name="ans" required>
+                <select class="cursor-pointer border-1 border-gray-400 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" 
+                        name="ans" required>
                     <option value="" disabled selected>--Select--</option>
                     <option value="OptA">Option A</option>
                     <option value="OptB">Option B</option>
                     <option value="OptC">Option C</option>
                     <option value="OptD">Option D</option>
                 </select>
-                <!-- <input class="border-1 p-1.5 rounded-sm" type="text" name="ans" placeholder="ans" /> -->
             </div>
+
+            <!-- Buttons -->
             <div class="mt-3 flex justify-center gap-2">
-                <input class="px-[10%] py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer" type="reset" name="reset" value="Reset" />
-                <input class="px-[10%] py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" type="submit" name="s1" value="Save" />
+                <input class="px-[10%] py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer" 
+                       type="reset" value="Reset" />
+                <input class="px-[10%] py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" 
+                       type="submit" name="s1" value="Save" />
             </div>
 
         </form>
     </div>
-
-
 </body>
-
 </html>
