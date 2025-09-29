@@ -44,6 +44,8 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
           <a href="manage_questions.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm  font-semibold">Questions</a>
           <a href="admin_user.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm  font-semibold">Users</a>
           <a href="manage_technologies.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm font-semibold">Technologies</a>
+          <a href="result.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm font-semibold">Results</a>
+
         </div>
 
         <div class="hidden md:flex items-center gap-4">
@@ -70,6 +72,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
       <a href="manage_questions.php" class="block px-4 py-2 text-gray-100 font-semibold">Questions</a>
       <a href="admin_user.php" class="block px-4 py-2 text-gray-100 font-semibold">Users</a>
       <a href="manage_technologies.php" class="block px-4 py-2 text-gray-100 font-semibold">Technologies</a>
+      <a href="result.php" class="block px-4 py-2 text-gray-100 font-semibold">Results</a>
       <a href="Logout.php" class="block px-4 py-2 text-gray-100 font-semibold">Logout</a>
     </div>
   </nav>
