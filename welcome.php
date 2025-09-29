@@ -24,7 +24,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
 
 </head>
 
-<body class="bg-gray-100">
+<body>
 
   <!-- Navbar -->
   <nav class="bg-[#191c5c] shadow-md fixed top-0 w-full h-[50px] min-h-[50px] z-10">

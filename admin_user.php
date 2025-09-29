@@ -87,7 +87,7 @@ if ($q !== '') {
             <div class="w-[300px] md:w-[500px]">
                 <form method="get" action="">
                     <input type="text" name="q" id="q" placeholder="Search using name/email" 
-                           class="border-1 border-gray-400 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
+                           class="border-1 border-gray-300 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
                            value="<?= htmlspecialchars($q, ENT_QUOTES) ?>" />
                     <?php if ($q !== ''): ?>
                         <a href="admin_user.php" class="cursor-pointer font-bold p-2 text-red-500"> x </a>
@@ -100,7 +100,7 @@ if ($q !== '') {
                 <a href="add_user.php" class="px-3 py-2 bg-[#191c5c] xl:hidden text-white font-semibold rounded-md cursor-pointer">Add</a>
             </div>
         </div>
-        <div class="w-full bg-gray-400 h-[1.2px]"></div>
+        <div class="w-full bg-gray-300 h-[1.2px]"></div>
         <div class="overflow-x-scroll md:overflow-x-hidden py-8 px-4 flex md:justify-center">
             <table class="w-[70%]">
                 <tr class="bg-[#191c5c] text-gray-100">
