@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2025 at 03:54 PM
+-- Generation Time: Sep 29, 2025 at 11:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -276,7 +276,8 @@ CREATE TABLE `regis` (
 INSERT INTO `regis` (`name`, `email`, `password`, `role`) VALUES
 ('Deepali Singh', 'deepali@mightcode.com', '$2y$10$QdDBlmOXEd.kC910b9vRoOgntWargdTS7oUleXBTkuNm1DPhtMZAu', 'admin'),
 ('Ritesh singh', 'ritesh@mightcode.com', '$2y$10$iiY1XSlT5sNcrbO3TPau5.SiCZ/uxCDXDcfKZQKSJB2BGnwKvb.yS', 'user'),
-('Admin', 'admin@mightcode.com', '$2y$10$xdQsTeFaA8A5.p0o97utIedpns8e2K47TSwMfUozOO9AN.ujGfgGS', 'admin');
+('Admin', 'admin@mightcode.com', '$2y$10$xdQsTeFaA8A5.p0o97utIedpns8e2K47TSwMfUozOO9AN.ujGfgGS', 'admin'),
+('Neha Singh', 'neha@mightcode.com', '$2y$10$q6k3uwEeIsAmaA3oGQhFheWCRp6efUuxV8p7sTqhjQSK7ltd8wQWu', 'user');
 
 -- --------------------------------------------------------
 
@@ -290,8 +291,8 @@ CREATE TABLE `results` (
   `tech_name` varchar(100) NOT NULL,
   `score` int(11) NOT NULL,
   `total` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `name` varchar(255) DEFAULT NULL
+  `created_at` datetime DEFAULT current_timestamp(),
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -299,32 +300,11 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`id`, `email`, `tech_name`, `score`, `total`, `created_at`, `name`) VALUES
-(1, 'riteshsinghran@gmail.com', 'HTML', 3, 3, '2025-09-04 13:36:11', 'Ritesh'),
-(2, 'riteshsinghran@gmail.com', 'C', 3, 3, '2025-09-05 05:36:55', 'Ritesh'),
-(3, 'riteshsinghran@gmail.com', 'C', 3, 3, '2025-09-05 06:02:35', 'Ritesh'),
-(4, 'riteshsinghran@gmail.com', 'Java', 3, 3, '2025-09-05 06:32:22', NULL),
-(5, 'riteshsinghran@gmail.com', 'PHP', 2, 3, '2025-09-05 06:36:22', NULL),
-(6, 'deepali@mightcode.com', 'C', 1, 3, '2025-09-08 12:11:15', NULL),
-(7, 'deepali@mightcode.com', 'HTML', 2, 3, '2025-09-08 13:11:15', NULL),
-(8, 'deepali@mightcode.com', 'Python', 4, 4, '2025-09-08 13:14:20', NULL),
-(9, 'deepali@mightcode.com', 'Python', 2, 4, '2025-09-09 04:35:41', NULL),
-(10, 'ritesh@mightcode.com', 'PHP', 3, 4, '2025-09-09 05:31:13', NULL),
-(11, 'ritesh@mightcode.com', 'HTML', 0, 1, '2025-09-09 05:58:16', NULL),
-(12, 'ritesh@mightcode.com', 'Python', 3, 5, '2025-09-09 05:59:31', NULL),
-(13, 'ritesh@mightcode.com', 'C', 3, 4, '2025-09-09 06:02:37', NULL),
-(14, 'ritesh@mightcode.com', 'Python', 2, 4, '2025-09-09 06:23:48', NULL),
-(15, 'ritesh@mightcode.com', 'Java', 2, 4, '2025-09-09 06:25:32', NULL),
-(16, 'ritesh@mightcode.com', 'Java', 1, 1, '2025-09-09 09:42:47', NULL),
-(17, 'ritesh@mightcode.com', 'C', 12, 20, '2025-09-09 11:56:41', NULL),
-(18, 'ritesh@mightcode.com', 'Python', 2, 2, '2025-09-11 12:45:51', NULL),
-(19, 'ritesh@mightcode.com', 'HTML', 1, 1, '2025-09-16 08:59:47', NULL),
-(20, 'ritesh@mightcode.com', 'HTML', 0, 1, '2025-09-16 09:55:13', NULL),
-(21, 'ritesh@mightcode.com', 'HTML', 1, 1, '2025-09-26 09:57:16', NULL),
-(22, 'ritesh@mightcode.com', 'HTML', 1, 1, '2025-09-26 10:26:38', NULL),
-(23, 'ritesh@mightcode.com', 'HTML', 1, 1, '2025-09-27 07:05:12', NULL),
-(24, 'deepali@mightcode.com', 'HTML', 1, 1, '2025-09-27 12:09:58', NULL),
-(25, 'ritesh@mightcode.com', 'HTML', 0, 1, '2025-09-27 12:30:26', NULL),
-(26, 'ritesh@mightcode.com', 'HTML', 0, 1, '2025-09-27 12:31:54', NULL);
+(1, 'Neha@mightcode.com', 'HTML', 1, 1, '2025-09-29 14:25:17', 'Neha Singh'),
+(2, 'Neha@mightcode.com', 'C', 6, 10, '2025-09-29 14:27:11', 'Neha Singh'),
+(3, 'Neha@mightcode.com', 'HTML', 1, 1, '2025-09-29 14:37:08', 'Neha Singh'),
+(4, 'Neha@mightcode.com', 'C', 3, 10, '2025-09-29 14:39:21', 'Neha Singh'),
+(5, 'Neha@mightcode.com', 'HTML', 0, 1, '2025-09-29 15:21:57', 'Neha Singh');
 
 -- --------------------------------------------------------
 
@@ -399,7 +379,7 @@ ALTER TABLE `question`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `technologies`
