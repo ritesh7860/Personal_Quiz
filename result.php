@@ -235,7 +235,7 @@ if ($role === 'admin') {
 
         <!-- Graph -->
         <?php if ($role === 'admin' && !empty($chartData)): ?>
-            <div class="chart-section">
+            <div class="chart-section h-[50%]">
                 <h3 style="text-align:center; color:#191c5c;">📊 Average Scores by Technology</h3>
                 <canvas id="techChart"></canvas>
             </div>
