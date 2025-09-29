@@ -1,86 +1,132 @@
 <?php
+include 'welcome.php';
+
 $link = mysqli_connect("localhost", "root", "", "quiz");
+if (!$link) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 $qid = intval($_GET['qid']);
 $result = mysqli_query($link, "SELECT * FROM question WHERE qid=$qid");
 $row = mysqli_fetch_assoc($result);
 
-// Fetch available technologies
+// ✅ Fetch available technologies dynamically
 $techResult = mysqli_query($link, "SELECT DISTINCT technology FROM question");
 $technologies = [];
 while ($t = mysqli_fetch_assoc($techResult)) {
     $technologies[] = $t['technology'];
 }
 
+// ✅ Handle update request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $qns = $_POST['qns'];
-    $a = $_POST['OptA'];
-    $b = $_POST['OptB'];
-    $c = $_POST['OptC'];
-    $d = $_POST['OptD'];
-    $ans = $_POST['ans'];
-    $tech = $_POST['technology'];
+    $qns  = $_POST['ques'];
+    $a    = $_POST['a'];
+    $b    = $_POST['b'];
+    $c    = $_POST['c'];
+    $d    = $_POST['d'];
+    $ans  = $_POST['ans'];
+    $tech = $_POST['tech'];
 
     $stmt = $link->prepare("UPDATE question 
         SET qns=?, OptA=?, OptB=?, OptC=?, OptD=?, ans=?, technology=? 
         WHERE qid=?");
     $stmt->bind_param("sssssssi", $qns, $a, $b, $c, $d, $ans, $tech, $qid);
     $stmt->execute();
-    header("Location: manage_questions.php");
-    exit;
+    $stmt->close();
+
+    echo "<p style='color:lightgreen; text-align:center;'>✅ Question Updated Successfully!</p>";
+    // header("Location: manage_questions.php");
+    // exit;
 }
 ?>
-<!DOCTYPE html>
+
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Edit Question</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #eef2f7; padding: 30px; background-color: #191c5c;}
-        .form-box { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        label { display: block; margin-top: 10px; font-weight: bold; }
-        input, select { width: 100%; padding: 8px; margin-top: 5px; }
-        button { margin-top: 15px; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #0056b3; }
+        body{
+            background-color:rgba(230, 251, 255, 0.88);
+        }
     </style>
 </head>
+
 <body>
-<div class="form-box">
-    <h2>Edit Question</h2>
-    <form method="post">
-        <label>Question</label>
-        <input type="text" name="qns" value="<?= htmlspecialchars($row['qns']) ?>">
+    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
+        <h2 class="font-medium text-[26px] mb-[20px]">Edit Question</h2>
+        <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" method="post">
+            
+            <!-- Technology -->
+            <div class="flex flex-col">
+                <label class="text-md font-medium">Select Technology</label>
+                <select class="cursor-pointer border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="tech" required>
+                    <option value="" disabled>--Select--</option>
+                    <?php foreach ($technologies as $t): ?>
+                        <option value="<?= htmlspecialchars($t) ?>" <?= ($t == $row['technology']) ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($t) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
-        <label>Option A</label>
-        <input type="text" name="OptA" value="<?= htmlspecialchars($row['OptA']) ?>">
+            <!-- Question -->
+            <div class="flex flex-col">
+                <label class="text-md font-medium">Question</label>
+                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm"
+                          name="ques" required><?= htmlspecialchars($row['qns']) ?></textarea>
+            </div>
 
-        <label>Option B</label>
-        <input type="text" name="OptB" value="<?= htmlspecialchars($row['OptB']) ?>">
+            <!-- Options -->
+            <div class="flex gap-3">
+                <div class="flex flex-col w-[50%]">
+                    <label class="text-md font-medium">Option A</label>
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                           type="text" name="a" value="<?= htmlspecialchars($row['OptA']) ?>" required />
+                </div>
+                <div class="flex flex-col w-[50%]">
+                    <label class="text-md font-medium">Option B</label>
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                           type="text" name="b" value="<?= htmlspecialchars($row['OptB']) ?>" required />
+                </div>
+            </div>
 
-        <label>Option C</label>
-        <input type="text" name="OptC" value="<?= htmlspecialchars($row['OptC']) ?>">
+            <div class="flex gap-3">
+                <div class="flex flex-col w-[50%]">
+                    <label class="text-md font-medium">Option C</label>
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                           type="text" name="c" value="<?= htmlspecialchars($row['OptC']) ?>" required />
+                </div>
+                <div class="flex flex-col w-[50%]">
+                    <label class="text-md font-medium">Option D</label>
+                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                           type="text" name="d" value="<?= htmlspecialchars($row['OptD']) ?>" required />
+                </div>
+            </div>
 
-        <label>Option D</label>
-        <input type="text" name="OptD" value="<?= htmlspecialchars($row['OptD']) ?>">
+            <!-- Correct Answer -->
+            <div class="flex flex-col">
+                <label class="text-md font-medium">Select the correct option</label>
+                <select class="cursor-pointer border-1 border-gray-400 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" 
+                        name="ans" required>
+                    <option value="OptA" <?= $row['ans']=="OptA"?"selected":"" ?>>Option A</option>
+                    <option value="OptB" <?= $row['ans']=="OptB"?"selected":"" ?>>Option B</option>
+                    <option value="OptC" <?= $row['ans']=="OptC"?"selected":"" ?>>Option C</option>
+                    <option value="OptD" <?= $row['ans']=="OptD"?"selected":"" ?>>Option D</option>
+                </select>
+            </div>
 
-        <label>Correct Answer</label>
-        <select name="ans">
-            <option value="OptA" <?= $row['ans']=="OptA"?"selected":"" ?>>Option A</option>
-            <option value="OptB" <?= $row['ans']=="OptB"?"selected":"" ?>>Option B</option>
-            <option value="OptC" <?= $row['ans']=="OptC"?"selected":"" ?>>Option C</option>
-            <option value="OptD" <?= $row['ans']=="OptD"?"selected":"" ?>>Option D</option>
-        </select>
+            <!-- Buttons -->
+            <div class="mt-3 flex justify-center gap-2">
+                <a href="manage_questions.php" 
+                   class="px-[10%] py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer text-center">
+                   Cancel
+                </a>
+                <input class="px-[10%] py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" 
+                       type="submit" value="Update" />
+            </div>
 
-        <label>Technology</label>
-        <select name="technology">
-            <?php foreach ($technologies as $t): ?>
-                <option value="<?= htmlspecialchars($t) ?>" <?= ($t==$row['technology'])?"selected":"" ?>>
-                    <?= htmlspecialchars($t) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-
-        <button type="submit">Update Question</button>
-    </form>
-</div>
+        </form>
+    </div>
 </body>
 </html>
