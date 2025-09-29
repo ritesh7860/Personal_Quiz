@@ -1,4 +1,5 @@
 <?php
+include "welcome.php";
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
@@ -107,39 +108,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        .main {
-            background-image: url("https://t4.ftcdn.net/jpg/04/39/13/37/360_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-
-        }
     </style>
 </head>
 
 <body>
-    <div class="main flex h-screen flex-col justify-center items-start pl-36 p-4">
-        <form class="form p-4 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
-            <div class="flex justify-center">
-                <img class="w-[80px] h-[80px] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg">
-            </div>
+    <div class="main flex h-[80vh] mt-[50px] flex-col justify-center items-center">
+        <form class="form p-4 bg-white shadow-xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
             <div class="heading p-2">
-                <h3 class="text-[1.5rem] font-medium text-[#191c5c]"> Admin Registration for Quiz</h3>
+                <h3 class="text-[1.5rem] font-medium text-[#191c5c]"> Create User </h3>
             </div>
 
             <div class="flex flex-col gap-3 p-2">
                 <div class="flex flex-col pt-2">
-                    <label class="text-start text-sm font-medium text-[#191c5c]">Name :</label>
-                    <input class="px-4 py-2 text-[#191c5c] text-sm rounded-md focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter your name" name="name" id="name" onfocus="resetBorder(this)" />
+                    <label class="text-start text-sm font-medium text-[#191c5c]">Username :</label>
+                    <input class="px-4 py-2 text-[#191c5c] text-sm rounded-md focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter username" name="name" id="name" onfocus="resetBorder(this)" />
                 </div>
                 <div class="flex flex-col">
                     <label class="text-start text-sm font-medium text-[#191c5c]">Email : </label>
-                    <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter your email" name="email" id="mail" onfocus="resetBorder(this)" />
+                    <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter email" name="email" id="mail" onfocus="resetBorder(this)" />
                     <span id="emailMsg" class="text-red-700 text-xs text-start"></span>
                 </div>
                 <div class="flex flex-col relative">
                     <label class="text-start text-sm font-medium text-[#191c5c]">Password :</label>
-                    <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter your password" name="password" id="pwd" onfocus="resetBorder(this)" />
+                    <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter password" name="password" id="pwd" onfocus="resetBorder(this)" />
                     <!-- Eye Button -->
                     <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700 cursor-pointer">
                         <!-- Eye Open -->
@@ -168,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 </div>
                 <div>
-                    <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-30 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create Account"><BR />
+                    <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-30 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create User"><BR />
                 </div>
                 <p style="color:red;"><?= htmlspecialchars($msg) ?></p>
         </form>
