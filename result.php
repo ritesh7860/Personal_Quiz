@@ -14,8 +14,29 @@ $email = $_SESSION['email'];
 $name  = $_SESSION['name'] ?? '';
 $role  = $_SESSION['role'] ?? 'user';
 
-// ✅ Clear quiz session
-unset($_SESSION['questions'], $_SESSION['current'], $_SESSION['correct'], $_SESSION['tech']);
+// ✅ Insert quiz result if it exists in session and not yet saved
+if (isset($_SESSION['questions'], $_SESSION['tech'], $_SESSION['correct'])) {
+    $tech  = $_SESSION['tech'];
+    $score = $_SESSION['correct'];
+    $total = count($_SESSION['questions']);
+
+    // Optional: prevent duplicate insert if user refreshes
+    $check = $link->prepare("SELECT id FROM results WHERE email=? AND tech_name=? AND created_at >= NOW() - INTERVAL 5 MINUTE");
+    $check->bind_param("ss", $email, $tech);
+    $check->execute();
+    $check->store_result();
+
+    if ($check->num_rows === 0) {
+        $stmt = $link->prepare("INSERT INTO results (email, name, tech_name, score, total) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssii", $email, $name, $tech, $score, $total);
+        $stmt->execute();
+        $stmt->close();
+    }
+    $check->close();
+
+    // Clear quiz session
+    unset($_SESSION['questions'], $_SESSION['current'], $_SESSION['correct'], $_SESSION['tech']);
+}
 
 // ✅ For admin: filter by technology
 $filterTech = $_GET['tech'] ?? '';
@@ -23,13 +44,9 @@ $filterTech = $_GET['tech'] ?? '';
 // Get list of available technologies
 $techList = $link->query("SELECT DISTINCT tech_name FROM results ORDER BY tech_name ASC");
 
-// Build query based on role
+// Fetch results based on role
 if ($role === 'admin') {
-    $query = "
-        SELECT r.id, r.email, u.name, r.tech_name, r.score, r.total, r.created_at 
-        FROM results r
-        JOIN regis u ON r.email = u.email
-    ";
+    $query = "SELECT r.id, r.email, r.name, r.tech_name, r.score, r.total, r.created_at FROM results r";
     if ($filterTech !== '') {
         $query .= " WHERE r.tech_name = '" . $link->real_escape_string($filterTech) . "'";
     }
@@ -37,22 +54,13 @@ if ($role === 'admin') {
     $results = $link->query($query);
 
     // Data for chart: avg score per tech
-    $chartRes = $link->query("
-        SELECT tech_name, AVG(score) AS avg_score, AVG(total) AS avg_total 
-        FROM results 
-        GROUP BY tech_name
-    ");
+    $chartRes = $link->query("SELECT tech_name, AVG(score) AS avg_score, AVG(total) AS avg_total FROM results GROUP BY tech_name");
     $chartData = [];
     while ($row = $chartRes->fetch_assoc()) {
         $chartData[] = $row;
     }
 } else {
-    $results = $link->prepare("
-        SELECT id, tech_name, score, total, created_at 
-        FROM results 
-        WHERE email = ? 
-        ORDER BY created_at DESC
-    ");
+    $results = $link->prepare("SELECT id, tech_name, score, total, created_at FROM results WHERE email = ? ORDER BY created_at DESC");
     $results->bind_param("s", $email);
     $results->execute();
     $results = $results->get_result();
@@ -89,7 +97,6 @@ if ($role === 'admin') {
         .layout {
             display: flex;
             margin-top: 70px;
-            /* header height */
             height: calc(100vh - 70px);
         }
 
@@ -182,8 +189,7 @@ if ($role === 'admin') {
                         <select name="tech" id="tech" onchange="this.form.submit()">
                             <option value="">All</option>
                             <?php while ($t = $techList->fetch_assoc()): ?>
-                                <option value="<?= htmlspecialchars($t['tech_name']) ?>"
-                                    <?= ($filterTech === $t['tech_name']) ? 'selected' : '' ?>>
+                                <option value="<?= htmlspecialchars($t['tech_name']) ?>" <?= ($filterTech === $t['tech_name']) ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($t['tech_name']) ?>
                                 </option>
                             <?php endwhile; ?>
@@ -225,12 +231,12 @@ if ($role === 'admin') {
                 <?php endif; ?>
             </table>
 
-            <div style="text-align:center; margin-top:15px;">
-                <?php if ($role === 'user'): ?>
-                <a href="language_Selection.php" class="btn">Back to Quiz</a>
-                <a href="Logout.php" class="btn">Logout</a>
-                <?php endif; ?>
-            </div>
+            <?php if ($role === 'user'): ?>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="User_Home.php" class="btn">Back to Quiz</a>
+                    <a href="Logout.php" class="btn">Logout</a>
+                </div>
+            <?php endif; ?>
         </div>
 
         <!-- Graph -->
@@ -242,8 +248,6 @@ if ($role === 'admin') {
         <?php endif; ?>
     </div>
 
-
-
     <?php if ($role === 'admin' && !empty($chartData)): ?>
         <script>
             const ctx = document.getElementById('techChart').getContext('2d');
@@ -251,9 +255,7 @@ if ($role === 'admin') {
                 labels: <?= json_encode(array_column($chartData, 'tech_name')) ?>,
                 datasets: [{
                     label: 'Average % Score',
-                    data: <?= json_encode(array_map(function ($r) {
-                                return round(($r['avg_score'] / $r['avg_total']) * 100, 2);
-                            }, $chartData)) ?>,
+                    data: <?= json_encode(array_map(fn($r) => round(($r['avg_score'] / $r['avg_total']) * 100, 2), $chartData)) ?>,
                     backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#E91E63', '#9C27B0']
                 }]
             };
@@ -273,4 +275,5 @@ if ($role === 'admin') {
         </script>
     <?php endif; ?>
 </body>
+
 </html>

@@ -18,8 +18,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
       /* font-family: "Allison", cursive; */
     }
     body{
-        font-family: "Inter Tight", sans-serif;
-      
+        font-family: "Inter Tight", sans-serif;    
     }
   </style>
 
@@ -31,7 +30,6 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
   <nav class="bg-[#191c5c] shadow-md fixed top-0 w-full h-[50px] min-h-[50px] z-10">
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center min-h-[50px] h-[50px] ">
-
         <!-- Logo -->
         <div class="flex">
           <h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1>
