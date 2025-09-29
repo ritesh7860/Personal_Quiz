@@ -1,11 +1,10 @@
 <?php
-include 'welcome.php';
+include "welcome.php";
 session_start();
 if (!isset($_SESSION['email']) || $_SESSION['role'] !== 'admin') {
     header("Location: Login.php");
     exit;
 }
-
 
 $link = mysqli_connect("localhost", "root", "", "quiz");
 if (!$link) {
@@ -26,6 +25,9 @@ if (isset($_GET['delete'])) {
 // Get selected technology
 $tech = $_GET['tech'] ?? '';
 
+// ✅ Get search keyword
+$q = $_GET['q'] ?? '';
+
 // Fetch available technologies for dropdown
 $techResult = mysqli_query($link, "SELECT DISTINCT technology FROM question");
 $technologies = [];
@@ -33,16 +35,36 @@ while ($row = mysqli_fetch_assoc($techResult)) {
     $technologies[] = $row['technology'];
 }
 
-// Fetch questions (filtered by technology if chosen)
-if ($tech) {
-    $stmt = $link->prepare("SELECT * FROM question WHERE technology=? ORDER BY qid");
-    $stmt->bind_param("s", $tech);
-    $stmt->execute();
-    $resultset = $stmt->get_result();
-} else {
-    $resultset = mysqli_query($link, "SELECT * FROM question ORDER BY qid");
+// ✅ Build query dynamically
+$sql = "SELECT * FROM question WHERE 1=1";
+$params = [];
+$types = "";
+
+// Filter by technology
+if (!empty($tech)) {
+    $sql .= " AND technology = ?";
+    $params[] = $tech;
+    $types .= "s";
 }
+
+// Filter by search keyword
+if (!empty($q)) {
+    $sql .= " AND qns LIKE ?";
+    $params[] = "%" . $q . "%";
+    $types .= "s";
+}
+
+$sql .= " ORDER BY qid";
+
+// Execute prepared statement
+$stmt = $link->prepare($sql);
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+$stmt->execute();
+$resultset = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -53,6 +75,7 @@ if ($tech) {
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+
         body {
             background: #fff;
             margin: 0;
@@ -67,11 +90,12 @@ if ($tech) {
             /* margin-top: 70px; */
             overflow-y: scroll;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-         }
+        }
 
         th,
         td {
@@ -107,20 +131,18 @@ if ($tech) {
         select {
             padding: 6px;
             margin-bottom: 10px;
-        }   
-
+        }
     </style>
 </head>
 
 <body class="bg-gray-700">
     <div class="main xl:overflow-y-hidden h-[88vh] w-[100vw] p-4 mt-[60px]">
         <!-- Technology Filter -->
-        <form method="get" action="">
-            <div class="flex justify-between items-center fixed bg-white w-[97%] h-[50px] min-h-[50px] top-[60px]">
-                <h1 class="text-2xl hidden md:block font-medium">Manage Questions</h1>
+        <div class="flex justify-between items-center fixed bg-white w-[97%] h-[50px] min-h-[50px] top-[60px]">
+            <form  method="get" action="">
                 <div>
                     <label class="text-xl text-justify font-medium">Select Technology:</label>
-                    <select class="border-2 border-gray-300 rounded-md px-2" name="tech" onchange="this.form.submit()"> 
+                    <select class="border-2 border-gray-300 rounded-md px-2" name="tech" onchange="this.form.submit()">
                         <option value="">-- All --</option>
                         <?php foreach ($technologies as $t): ?>
                             <option value="<?= htmlspecialchars($t) ?>" <?= ($t == $tech) ? 'selected' : '' ?>>
@@ -129,8 +151,25 @@ if ($tech) {
                         <?php endforeach; ?>
                     </select>
                 </div>
+       </form>
+
+            <!-- Search form (method GET) -->
+            <div class="w-[300px] md:w-[500px]">
+                <form method="get" action="">
+                    <input type="text" name="q" id="q" placeholder="Search using Question"
+                        class="border-1 border-gray-400 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
+                        value="<?= htmlspecialchars($q, ENT_QUOTES) ?>" />
+                    <?php if ($q !== ''): ?>
+                        <a href="manage_questions.php" class="cursor-pointer font-bold p-2 ">x</a>
+                    <?php endif; ?>
+                </form>
             </div>
-        </form>
+
+            <div>
+                <a href="insert.php" class="px-3 py-2 bg-[#191c5c] hidden xl:block text-white font-semibold rounded-md cursor-pointer">Add New Question</a>
+                <a href="insert.php" class="px-3 py-2 bg-[#191c5c] xl:hidden text-white font-semibold rounded-md cursor-pointer">Add</a>
+            </div>
+        </div>
 
         <table class="table-header sticky top-[35px] mt-[100px] overflow-y-scroll">
             <tr>
@@ -141,8 +180,8 @@ if ($tech) {
                 <th class="w-[10%] min-w-[100px]">Technology</th>
                 <th class="w-[10%] min-w-[100px]">Actions</th>
             </tr>
-            </table>
-            <table class="table-content overflow-y-scroll">
+        </table>
+        <table class="table-content overflow-y-scroll">
             <?php while ($row = mysqli_fetch_assoc($resultset)): ?>
                 <tr>
                     <td class="w-[5%]"><?= $row['qid'] ?></td>

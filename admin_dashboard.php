@@ -81,8 +81,8 @@ $recentQuestions = $link->query("SELECT qns, technology FROM question ORDER BY q
                 <h3 class="text-lg font-bold text-[#191c5c]">📘 Manage Questions</h3>
                 <p class="text-gray-600 mt-2">View, edit and add quiz questions.</p>
             </a>
-            <a href="reports.php" class="bg-white rounded-xl p-6 shadow hover:bg-blue-50 transition">
-                <h3 class="text-lg font-bold text-[#191c5c]">📊 Reports</h3>
+            <a href="result.php" class="bg-white rounded-xl p-6 shadow hover:bg-blue-50 transition">
+                <h3 class="text-lg font-bold text-[#191c5c]">📊 Results</h3>
                 <p class="text-gray-600 mt-2">View quiz performance reports.</p>
             </a>
         </div>

@@ -9,7 +9,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar Example</title>
+  <title>Quiz Time</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
@@ -43,7 +43,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
           <a href="admin_dashboard.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm font-semibold">Home</a>
           <a href="manage_questions.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm  font-semibold">Questions</a>
           <a href="admin_user.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm  font-semibold">Users</a>
-          <a href="#" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm font-semibold">Contact</a>
+          <a href="manage_technologies.php" class="text-gray-100 hover:text-[#191c5c] p-2 hover:bg-gray-300 rounded-sm font-semibold">Technologies</a>
         </div>
 
         <div class="hidden md:flex items-center gap-4">
@@ -69,9 +69,8 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
       <a href="insert.php" class="block px-4 py-2 text-gray-100 font-semibold">Home</a>
       <a href="manage_questions.php" class="block px-4 py-2 text-gray-100 font-semibold">Questions</a>
       <a href="admin_user.php" class="block px-4 py-2 text-gray-100 font-semibold">Users</a>
-      <a href="#" class="block px-4 py-2 text-gray-100 font-semibold">Contact</a>
+      <a href="manage_technologies.php" class="block px-4 py-2 text-gray-100 font-semibold">Technologies</a>
       <a href="Logout.php" class="block px-4 py-2 text-gray-100 font-semibold">Logout</a>
-      <a href="#" class="block px-4 py-2 text-gray-100 hover:bg-gray-100 font-semibold">Logout</a>
     </div>
   </nav>
 

@@ -90,7 +90,7 @@ if ($q !== '') {
                            class="border-1 border-gray-400 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
                            value="<?= htmlspecialchars($q, ENT_QUOTES) ?>" />
                     <?php if ($q !== ''): ?>
-                        <a href="admin_user.php" class="cursor-pointer font-bold p-2">x</a>
+                        <a href="admin_user.php" class="cursor-pointer font-bold p-2 text-red-500"> x </a>
                     <?php endif; ?>
                 </form>
             </div>
