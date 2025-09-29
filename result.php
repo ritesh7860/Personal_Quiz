@@ -273,5 +273,4 @@ if ($role === 'admin') {
         </script>
     <?php endif; ?>
 </body>
-
 </html>
