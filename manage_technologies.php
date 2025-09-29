@@ -84,29 +84,32 @@ if ($search !== "") {
 </head>
 
 <body class="bg-gray-100">
-    <div class="max-w-[70%] mx-auto mt-[120px] p-6 bg-white rounded-lg shadow-lg">
+    <div class="max-w-[70%] mx-auto mt-[80px] p-6 bg-white rounded-lg shadow-lg">
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-2xl font-bold ">Add Technologies</h1>
             <!-- 🔍 Search Box -->
-            <form method="get" class="flex space-x-2">
+            <div >
+                <form method="get" class="flex gap-1 items-center">
                 <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search Technology"
-                    class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                <button type="submit" class="px-3 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Search</button>
-                <a href="manage_technologies.php" class="px-3 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500">Reset</a>
+                    class="px-3 py-2 border border-gray-300 rounded-md focus:outline-1 focus:outline-[#191c5c]">
+                    <?php if ($q !== ''): ?>
+                        <a href="manage_technologies.php" class="cursor-pointer text-red-500 font-bold p-2 ">x</a>
+                    <?php endif; ?>
             </form>
+            </div>
         </div>
 
         <!-- Add Form -->
         <form method="post" class="space-y-4 mb-6">
             <div>
                 <label class="block text-sm font-medium text-gray-700">Technology Name</label>
-                <input type="text" name="tech_name" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500" required>
+                <input type="text" name="tech_name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-1 focus:outline-[#191c5c]" required>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Description</label>
-                <textarea name="description" rows="3" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
+                <textarea name="description" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-1 focus:outline-[#191c5c]"></textarea>
             </div>
-            <button type="submit" name="add" class="w-full py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">➕ Add Technology</button>
+            <button type="submit" name="add" class="w-full py-2 bg-[#191c5c] text-white font-medium rounded-md hover:bg-[#191c7c] text-xl"><span class="text-2xl text-center">+</span> Add Technology</button>
         </form>
 
         <!-- Message -->
@@ -120,9 +123,9 @@ if ($search !== "") {
             <tr class="bg-gray-200 text-left">
                 <th class="border p-2">ID</th>
                 <th class="border p-2">Technology</th>
-                <th class="border p-2">Description</th>
+                <th class="border text-center p-2">Description</th>
                 <th class="border p-2">Created At</th>
-                <th class="border p-2 w-[162px]">Actions</th>
+                <th class="border p-2 text-center w-[120px]">Actions</th>
             </tr>
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
@@ -131,15 +134,13 @@ if ($search !== "") {
                         <td class="border p-2 font-medium"><?= htmlspecialchars($row['tech_name']) ?></td>
                         <td class="border p-2"><?= htmlspecialchars($row['description']) ?></td>
                         <td class="border p-2"><?= $row['created_at'] ?></td>
-                        <td class="border p-2">
+                        <td class="border p-2 text-center">
                             <!-- Edit Button -->
                             <button
-                                onclick="document.getElementById('edit-<?= $row['id'] ?>').classList.remove('hidden')"
-                                class="px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600">✏ Edit</button>
+                                onclick="document.getElementById('edit-<?= $row['id'] ?>').classList.remove('hidden')" class="mr-3">✏️</button>
                             <!-- Delete Button -->
                             <a href="?delete=<?= $row['id'] ?>"
-                                onclick="return confirm('Are you sure you want to delete this technology?')"
-                                class="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700">🗑 Delete</a>
+                                onclick="return confirm('Are you sure you want to delete this technology?')">🗑</a>
                         </td>
                     </tr>
 
@@ -157,8 +158,8 @@ if ($search !== "") {
                                     <label class="block text-sm font-medium text-gray-700">Description</label>
                                     <textarea name="description" rows="2" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"><?= htmlspecialchars($row['description']) ?></textarea>
                                 </div>
-                                <button type="submit" name="update" class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700">💾 Update</button>
-                                <button type="button" onclick="document.getElementById('edit-<?= $row['id'] ?>').classList.add('hidden')" class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</button>
+                                <button type="submit" name="update" class="px-3 py-1 bg-white border-2 border-[#191c5c] text-[#191c5c] font-semibold rounded hover:bg-gray-200"> Update</button>
+                                <button type="button" onclick="document.getElementById('edit-<?= $row['id'] ?>').classList.add('hidden')" class="px-3 py-1 border-2 border-[#191c5c] bg-[#191c5c] text-white rounded hover:bg-[#191c7c]">Cancel</button>
                             </form>
                         </td>
                     </tr>
