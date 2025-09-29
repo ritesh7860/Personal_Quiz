@@ -115,7 +115,7 @@ $resultset = $stmt->get_result();
         }
 
         .actions a {
-            margin-right: 8px;
+            /* margin-right: 8px; */
             text-decoration: none;
             font-size: 16px;
         }
@@ -129,20 +129,20 @@ $resultset = $stmt->get_result();
         }
 
         select {
-            padding: 6px;
-            margin-bottom: 10px;
+            padding: 5px;
+            /* margin-bottom: 10px; */
         }
     </style>
 </head>
 
 <body class="bg-gray-700">
-    <div class="main xl:overflow-y-hidden h-[88vh] w-[100vw] p-4 mt-[60px]">
+    <div class="main xl:overflow-y-hidden h-[88vh] w-[100vw] p-4 mt-[50px]">
         <!-- Technology Filter -->
-        <div class="flex justify-between items-center fixed bg-white w-[97%] h-[50px] min-h-[50px] top-[60px]">
+        <div class="flex justify-between items-center gap-2 fixed bg-white w-[97%] min-h-[50px] top-[50px]">
             <form  method="get" action="">
                 <div>
-                    <label class="text-xl text-justify font-medium">Select Technology:</label>
-                    <select class="border-2 border-gray-300 rounded-md px-2" name="tech" onchange="this.form.submit()">
+                    <label class="hidden md:inline text-xl text-justify font-medium">Select Technology:</label>
+                    <select class="border-1 border-gray-300 rounded-md px-2" name="tech" onchange="this.form.submit()">
                         <option value="">-- All --</option>
                         <?php foreach ($technologies as $t): ?>
                             <option value="<?= htmlspecialchars($t) ?>" <?= ($t == $tech) ? 'selected' : '' ?>>
@@ -151,13 +151,13 @@ $resultset = $stmt->get_result();
                         <?php endforeach; ?>
                     </select>
                 </div>
-       </form>
+        </form>
 
             <!-- Search form (method GET) -->
             <div class="w-[300px] md:w-[500px]">
                 <form method="get" action="">
                     <input type="text" name="q" id="q" placeholder="Search using Question"
-                        class="border-1 border-gray-400 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
+                        class="border-1 border-gray-300 rounded-sm py-1 px-3 w-[90%] focus:outline-1"
                         value="<?= htmlspecialchars($q, ENT_QUOTES) ?>" />
                     <?php if ($q !== ''): ?>
                         <a href="manage_questions.php" class="cursor-pointer text-red-500 font-bold p-2 ">x</a>
@@ -165,7 +165,7 @@ $resultset = $stmt->get_result();
                 </form>
             </div>
 
-            <div>
+            <div class="px-2 md:px-0">
                 <a href="insert.php" class="px-3 py-2 bg-[#191c5c] hidden xl:block text-white font-semibold rounded-md cursor-pointer">Add New Question</a>
                 <a href="insert.php" class="px-3 py-2 bg-[#191c5c] xl:hidden text-white font-semibold rounded-md cursor-pointer">Add</a>
             </div>
@@ -185,16 +185,16 @@ $resultset = $stmt->get_result();
             <?php while ($row = mysqli_fetch_assoc($resultset)): ?>
                 <tr>
                     <td class="w-[5%]"><?= $row['qid'] ?></td>
-                    <td class="w-[45%] min-w-[250px]"><?= htmlspecialchars($row['qns']) ?></td>
-                    <td class="w-[25%]">
+                    <td class="w-[40%] min-w-[250px]"><?= htmlspecialchars($row['qns']) ?></td>
+                    <td class="w-[20%]">
                         A: <?= htmlspecialchars($row['OptA']) ?><br>
                         B: <?= htmlspecialchars($row['OptB']) ?><br>
                         C: <?= htmlspecialchars($row['OptC']) ?><br>
                         D: <?= htmlspecialchars($row['OptD']) ?>
                     </td>
-                    <td class="w-[8%]"><b><?= htmlspecialchars($row['ans']) ?></b></td>
+                    <td class="w-[8%] min-w-[80px]"><b><?= htmlspecialchars($row['ans']) ?></b></td>
                     <td class="w-[10%]"><?= htmlspecialchars($row['technology']) ?></td>
-                    <td class="actions w-[10%]">
+                    <td class="actions w-[10%]  min-w-[100px]">
                         <a class="edit" href="edit_question.php?qid=<?= $row['qid'] ?>">✏️</a>
                         <a class="delete" href="?delete=<?= $row['qid'] ?>&tech=<?= urlencode($tech) ?>"
                             onclick="return confirm('Are you sure you want to delete this question?');">🗑️</a>
