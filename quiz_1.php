@@ -17,7 +17,6 @@ if (!isset($_SESSION['questions'])) {
         header("Location: welcome.php");
         exit;
     }
-
     $tech = $_GET['tech'];
 
     // Save selected technology in session
