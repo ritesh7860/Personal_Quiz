@@ -27,6 +27,7 @@ $userResults = $resultQuery->get_result();
 
 <head>
     <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title>User Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
