@@ -32,16 +32,22 @@ $userResults = $resultQuery->get_result();
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
 
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         .logo {
             font-family: "Pacifico", cursive;
             /* font-family: "Allison", cursive; */
         }
+
     </style>
 </head>
 
 <body class="bg-gray-50 font-sans">
     <!-- Navbar -->
-    <nav class="bg-[#191c5c] text-white px-6 py-4 flex justify-between items-center shadow-lg">
+    <nav class="bg-[#191c5c] w-full h-[50px] fixed top-0 text-white px-6 py-4 flex justify-between items-center shadow-lg">
         <h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1>
         <div class="hidden md:flex items-center gap-4">
             <span class="text-gray-100 font-semibold">Welcome, <?= htmlspecialchars($name) ?> 👋</span>
@@ -50,21 +56,22 @@ $userResults = $resultQuery->get_result();
     </nav>
 
     <!-- Page Layout -->
-    <div class="w-[100vw] flex flex-col gap-6 items-center justify-center p-4 mt-[50px]">
+    <div class="w-full h-full flex flex-col gap-6 items-center justify-center py-10 mt-[60px]">
 
         <!-- Profile Card -->
-        <div class="flex gap-6 w-[70%]">
-            <div class="bg-white p-6 rounded-xl shadow-2xl  w-[30%]">
-                <h2 class="text-xl font-semibold mb-4">👤 Profile</h2>
-                <p><b>Name:</b> <?= htmlspecialchars($name) ?></p>
-                <p><b>Email:</b> <?= htmlspecialchars($email) ?></p>
-                <p class="mt-3 text-gray-600 text-sm">Keep learning, keep growing 🚀</p>
+        <div class="flex flex-col xl:flex-row gap-6 w-[70%]">
+
+            <div class="bg-white p-6 rounded-xl shadow-2xl w-full xl:w-[30%] ">
+                <h2 class="text-4xl xl:text-xl font-semibold mb-4">👤 Profile</h2>
+                <p class="text-xl xl:text-sm"><b>Name:</b> <?= htmlspecialchars($name) ?></p>
+                <p class="text-xl xl:text-sm"><b>Email:</b> <?= htmlspecialchars($email) ?></p>
+                <p class="mt-3 text-gray-600  text-xl xl:text-sm ">Keep learning, keep growing 🚀</p>
             </div>
 
             <!-- Quiz Rules --> 
-            <div class="bg-white p-6 rounded-xl shadow-2xl  w-[70%]">
-                <h2 class="text-xl font-semibold mb-4">📜 Quiz Rules</h2>
-                <ul class="list-disc pl-6 space-y-2 text-gray-700">
+            <div class="bg-white p-6 rounded-xl shadow-2xl w-full xl:w-[70%]">
+                <h2 class="text-4xl xl:text-xl font-semibold mb-4">📜 Quiz Rules</h2>
+                <ul class="list-disc pl-6 space-y-2 text-xl xl:text-sm text-gray-700">
                     <li>Once you submit a question, you <b>cannot go back</b>.</li>
                     <li>Each question has <b>only one correct answer</b>.</li>
                     <li>Do not refresh or close the window during the quiz.</li>
@@ -75,11 +82,11 @@ $userResults = $resultQuery->get_result();
             </div>
         </div>
         
-        <div class="flex gap-6 w-[70%]">
+        <div class="flex gap-6 w-[70%] flex-col xl:flex-row">
 
-            <div class="bg-white p-6 rounded-xl shadow-xl w-[50%]">
-                <h2 class="text-xl font-semibold mb-4">🎯 Start a Quiz</h2>
-                <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-xl shadow-xl w-full xl:[50%]">
+                <h2 class="text-4xl xl:text-xl font-semibold mb-4">🎯 Start a Quiz</h2>
+                <div class="grid grid-cols-2 text-xl xl:text-sm md:grid-cols-3 gap-4">
                     <?php if ($techResult && $techResult->num_rows > 0): ?>
                         <?php while ($row = $techResult->fetch_assoc()): ?>
                             <button onclick="confirmStart('<?= urlencode($row['tech_name']) ?>')"
@@ -94,10 +101,10 @@ $userResults = $resultQuery->get_result();
             </div>
 
             <!-- Recent Results -->
-            <div class="bg-white p-6 rounded-xl shadow-xl  w-[50%]">
-                <h2 class="text-xl font-semibold mb-4">📊 Recent Results</h2>
+            <div class="bg-white p-6 rounded-xl shadow-xl w-full xl:[50%]">
+                <h2 class="text-4xl xl:text-xl font-semibold mb-4">📊 Recent Results</h2>
                 <?php if ($userResults && $userResults->num_rows > 0): ?>
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full text-left text-xl xl:text-sm border-collapse">
                         <thead>
                             <tr class="bg-gray-200 text-gray-700">
                                 <th class="p-3">Technology</th>

@@ -233,7 +233,7 @@ if ($role === 'admin') {
 
             <?php if ($role === 'user'): ?>
                 <div style="text-align:center; margin-top:15px;">
-                    <a href="User_Home.php" class="btn">Back to Quiz</a>
+                    <a href="User_Home.php" class="btn">Home</a>
                     <a href="Logout.php" class="btn">Logout</a>
                 </div>
             <?php endif; ?>
