@@ -41,6 +41,12 @@ $userResults = $resultQuery->get_result();
             font-family: "Pacifico", cursive;
             /* font-family: "Allison", cursive; */
         }
+        
+        th,
+        td {
+            border: 1px solid #e6e6ee;
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -56,7 +62,7 @@ $userResults = $resultQuery->get_result();
     </nav>
 
     <!-- Page Layout -->
-    <div class="w-full h-full flex flex-col gap-6 items-center justify-center py-10 mt-[60px]">
+    <div class="w-full h-full flex flex-col gap-6 items-center justify-center py-4 mt-[50px]">
 
         <!-- Profile Card -->
         <div class="flex flex-col xl:flex-row gap-6 w-[70%]">
@@ -90,7 +96,7 @@ $userResults = $resultQuery->get_result();
                     <?php if ($techResult && $techResult->num_rows > 0): ?>
                         <?php while ($row = $techResult->fetch_assoc()): ?>
                             <button onclick="confirmStart('<?= urlencode($row['tech_name']) ?>')"
-                                class="block w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center px-4 py-6 rounded-lg shadow hover:scale-105 hover:shadow-lg transition">
+                                class="block w-full bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white text-center font-semibold px-2 py-4 rounded-lg shadow hover:scale-105 hover:shadow-lg transition">
                                 <?= htmlspecialchars($row['tech_name']) ?>
                             </button>
                         <?php endwhile; ?>
@@ -104,9 +110,9 @@ $userResults = $resultQuery->get_result();
             <div class="bg-white p-6 rounded-xl shadow-xl w-full xl:[50%]">
                 <h2 class="text-4xl xl:text-xl font-semibold mb-4">📊 Recent Results</h2>
                 <?php if ($userResults && $userResults->num_rows > 0): ?>
-                    <table class="w-full text-left text-xl xl:text-sm border-collapse">
+                    <table class="w-full text-left text-xl xl:text-sm border-collapse rounded-md">
                         <thead>
-                            <tr class="bg-gray-200 text-gray-700">
+                            <tr class="bg-[#191c5c] text-white rounded-md">
                                 <th class="p-3">Technology</th>
                                 <th class="p-3">Score</th>
                                 <th class="p-3">Date</th>
@@ -136,8 +142,8 @@ $userResults = $resultQuery->get_result();
             <h2 class="text-xl font-bold mb-4">⚠️ Ready to Start?</h2>
             <p class="text-gray-600 mb-6">Have you read all the rules? Once you start, you cannot go back.</p>
             <div class="flex justify-center gap-4">
-                <button onclick="closeModal()" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Cancel</button>
-                <a id="startLink" href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Start Quiz</a>
+                <button onclick="closeModal()" class="bg-white text-[#191c5c] border-2 border-[#191c5c] font-semibold hover:bg-gray-200 px-4 py-2 rounded-md">Cancel</button>
+                <a id="startLink" href="#" class="bg-[#191c5c] hover:bg-[#191c7c] bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white px-4 py-2 font-semibold rounded-md">Start Quiz</a>
             </div>
         </div>
     </div>
