@@ -52,6 +52,9 @@ $current = $_SESSION['current'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selected = $_POST['answer'] ?? '';
     $correctAnswer = $questions[$current]['ans'];
+  
+    // Store the user's selected answer
+    $_SESSION['answers'][$current] = $selected;
 
     if ($selected === $correctAnswer) {
         $_SESSION['correct']++;
@@ -60,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['current']++;
 
     if ($_SESSION['current'] >= count($questions)) {
-        header("Location: result.php");
+        header("Location: review.php");
         exit;
     } else {
         header("Location: quiz_1.php"); // no tech param needed anymore
