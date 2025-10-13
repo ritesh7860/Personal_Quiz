@@ -33,7 +33,7 @@ $recentQuestions = $link->query("SELECT qns, technology FROM question ORDER BY q
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-200 min-h-screen">
     <!-- Navbar -->
     <!-- <header class="bg-[#191c5c] text-white shadow-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">

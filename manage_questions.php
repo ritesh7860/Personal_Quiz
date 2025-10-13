@@ -135,7 +135,7 @@ $resultset = $stmt->get_result();
     </style>
 </head>
 
-<body class="bg-gray-700">
+<body class="bg-gray-200">
     <div class="main xl:overflow-y-hidden h-[88vh] w-[100vw] p-4 mt-[50px]">
         <!-- Technology Filter -->
         <div class="flex justify-between items-center gap-2 fixed bg-white w-[97%] min-h-[50px] top-[50px]">
@@ -174,8 +174,8 @@ $resultset = $stmt->get_result();
         <table class="table-header sticky top-[35px] mt-[100px] overflow-y-scroll">
             <tr>
                 <th class="w-[5%]">ID</th>
-                <th class="w-[45%] min-w-[250px]">Question</th>
-                <th class="w-[25%] min-w-[200px]">Options</th>
+                <th class="w-[40%] min-w-[250px]">Question</th>
+                <th class="w-[20%] min-w-[200px]">Options</th>
                 <th class="w-[8%] min-w-[80px]">Answer</th>
                 <th class="w-[10%] min-w-[100px]">Technology</th>
                 <th class="w-[10%] min-w-[100px]">Actions</th>

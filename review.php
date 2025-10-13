@@ -106,8 +106,8 @@ $name = $_SESSION['name'] ?? 'User';
     <?php endforeach; ?>
 
     <div class="flex justify-end gap-5">
-        <button class="px-4 py-2 text-[#191c5c] bg-white border-2 border-[#191c5c] font-semibold rounded-md"> <a href="User_Home.php">Home</a></button>
-        <button  class="px-4 py-2 bg-[#191c5c] text-white border-2 border-[#191c5c] font-semibold rounded-md"> <a href="result.php">Result</a></button>
+        <button class="px-4 py-2 text-[#191c5c] hover:bg-gray-200 bg-white border-2 border-[#191c5c] font-semibold rounded-md"> <a href="User_Home.php">Home</a></button>
+        <button  class="px-4 py-2 bg-[#191c5c] hover:bg-[#191c7c] text-white border-2 border-[#191c5c] font-semibold rounded-md"> <a href="result.php">Result</a></button>
     </div>
 </div>
 </body>

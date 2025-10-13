@@ -78,7 +78,7 @@ if ($search !== "") {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="w-[98vw] bg-gray-50">
+<body class="w-[98vw] bg-gray-100">
     <div class="main flex flex-col xl:flex-row mt-[50px] gap-4 p-4">
         <!-- Left Panel: Technology List -->
         <div class="w-full xl:w-[75%] bg-white border border-gray-200 rounded-md shadow-md px-4 py-2">

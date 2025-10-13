@@ -39,17 +39,14 @@ if (isset($_POST['s1'])) {
     <title>WIN OR BOOZE</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body {
-            background-color: rgba(230, 251, 255, 0.88);
-        }
     </style>
 </head>
 
-<body>
+<body class="bg-gray-200">
     <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
         <h2 class="font-medium text-[26px] mb-[20px]">Create Questions</h2>
         
-        <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
+        <form class="w-[50%] bg-white border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
             
             <!-- Technology Dropdown -->
             <div class="flex flex-col">

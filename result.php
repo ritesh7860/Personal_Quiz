@@ -76,11 +76,18 @@ if ($role === 'admin') {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #f4f6f9;
+            /* background: #f4f6f9; */
             color: #333;
+        }
+
+        .logo {
+            font-family: "Pacifico", cursive;
+            /* font-family: "Allison", cursive; */
         }
 
         header {
@@ -186,9 +193,6 @@ if ($role === 'admin') {
             <a href="Logout.php" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
         </div>
     </nav>
-    <div class="flex justify-center pt-5">
-        <?= ($role === 'admin') ? include "welcome.php" : "Your Quiz Results, " . htmlspecialchars($name) ?>
-    </div>
     <div class="layout">
         <div class="table-section">
             <?php if ($role === 'admin'): ?>
@@ -241,9 +245,9 @@ if ($role === 'admin') {
             </table>
 
             <?php if ($role === 'user'): ?>
-                <div style="text-align:center; margin-top:15px;">
-                    <a href="User_Home.php" class="btn">Home</a>
-                    <a href="Logout.php" class="btn">Logout</a>
+                <div class="text-center mt-5">
+                    <a href="User_Home.php" class="px-4 py-2 text-[#191c5c] bg-white border-2 border-[#191c5c] hover:bg-gray-200 font-semibold rounded-md">Home</a>
+                    <a href="Logout.php" class="bg-[#191c5c] hover:bg-[#191c7c] border-2 border-[#191c5c] text-white px-4 py-2 font-semibold rounded-md">Logout</a>
                 </div>
             <?php endif; ?>
         </div>
