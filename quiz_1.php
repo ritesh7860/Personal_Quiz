@@ -82,10 +82,10 @@ $question = $questions[$current];
     <title>Quiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
 
         body {
-            font-family: "Caveat", cursive;
+            /* font-family: "Pacifico", cursive; */
             margin: 0;
             padding: 0;
         }
@@ -109,19 +109,19 @@ $question = $questions[$current];
 
 <body class="bg-gray-50 h-[100vh] w-[100vw] bg-gradient-to-l from-[#191c5d] to-[#191c2c] ">
     <div class="flex h-full w-full items-center justify-center">
-        <div class="quiz-container w-[90%] md:w-[40%] h-auto bg-white p-6 rounded-xl text-center shadow-lg">
-            <h2 class="text-2xl md:text-xl font-semibold text-gray-700">Question <?= $current + 1 ?> of <?= count($questions) ?></h2>
+        <div class="quiz-container w-[90%] md:w-[35%] h-auto bg-white p-6 rounded-xl text-center shadow-lg">
+            <h2 class="text-lg md:text-sm font-medium text-gray-700">Question <?= $current + 1 ?> of <?= count($questions) ?></h2>
             <form method="post">
-                <p class="text-3xl leading-none xl:text-3xl font-semibold py-4 text-gray-700"><?= htmlspecialchars($question['qns']) ?></p>
+                <p class="text-2xl md:text-xl leading-none font-medium py-4 text-gray-700"><?= htmlspecialchars($question['qns']) ?></p>
 
-                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptA" required> <?= htmlspecialchars($question['OptA']) ?></label>
-                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptB"> <?= htmlspecialchars($question['OptB']) ?></label>
-                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptC"> <?= htmlspecialchars($question['OptC']) ?></label>
-                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptD"> <?= htmlspecialchars($question['OptD']) ?></label>
+                <label class="text-lg md:text-sm font-medium text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptA" required> <?= htmlspecialchars($question['OptA']) ?></label>
+                <label class="text-lg md:text-sm font-medium text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptB"> <?= htmlspecialchars($question['OptB']) ?></label>
+                <label class="text-lg md:text-sm font-medium text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptC"> <?= htmlspecialchars($question['OptC']) ?></label>
+                <label class="text-lg md:text-sm font-medium text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptD"> <?= htmlspecialchars($question['OptD']) ?></label>
 
-                <button type="submit" class="w-[30%] bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white text-center text-2xl xl:text-2xl font-semibold px-2 py-2 xl:py-4 mt-3 rounded-lg hover:scale-105 transition">Next</button>
+                <button type="submit" class="w-[30%] bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white text-center text-2xl xl:text-xl font-semibold px-2 py-3 mt-3 rounded-lg hover:scale-105 transition">Next</button>
             </form>
-            <div class="progress pt-3 text-[#191c5c] font-semibold">Progress: <?= $current + 1 ?>/<?= count($questions) ?></div>
+            <!-- <div class="progress pt-3 text-[#191c5c] text-lg font-medium">Progress: <?= $current + 1 ?>/<?= count($questions) ?></div> -->
         </div>
     </div>
 </body>
