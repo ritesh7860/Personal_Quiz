@@ -7,18 +7,29 @@ if (!isset($_SESSION['questions']) || !isset($_SESSION['answers'])) {
 
 $questions = $_SESSION['questions']; // Array of questions
 $userAnswers = $_SESSION['answers']; // Array of user answers
+$email = $_SESSION['email'];
+$name = $_SESSION['name'] ?? 'User';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Quiz Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+
+        .logo {
+            font-family: "Pacifico", cursive;
+            /* font-family: "Allison", cursive; */
+        }
+    </style>
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #f4f6f9;
             margin: 0;
-            padding: 20px;
+           /*  padding: 20px; */
         }
         .container {
             max-width: 900px;
@@ -57,7 +68,16 @@ $userAnswers = $_SESSION['answers']; // Array of user answers
     </style>
 </head>
 <body>
-<div class="container">
+    <!-- Navbar -->
+    <nav class="bg-[#191c5c] text-white px-6 py-4 flex justify-between items-center shadow-lg">
+        <h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1>
+        <div class="hidden md:flex items-center gap-4">
+            <span class="text-gray-100 font-semibold">Welcome, <?= htmlspecialchars($name) ?> 👋</span>
+            <a href="Logout.php" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
+        </div>
+    </nav>
+<div class="container p-3">
+    
     <h2 style="text-align:center; margin-bottom:30px;">📘 Quiz Review</h2>
 
     <?php foreach ($questions as $i => $q): 
@@ -83,6 +103,11 @@ $userAnswers = $_SESSION['answers']; // Array of user answers
         <?php endforeach; ?>
     </div>
     <?php endforeach; ?>
+
+    <div class="flex justify-end gap-5">
+        <button class="px-4 py-2 text-[#191c5c] bg-white border-2 border-[#191c5c] font-semibold rounded-md"> <a href="User_Home.php">Home</a></button>
+        <button  class="px-4 py-2 bg-[#191c5c] text-white border-2 border-[#191c5c] font-semibold rounded-md"> <a href="result.php">Result</a></button>
+    </div>
 </div>
 </body>
 </html>

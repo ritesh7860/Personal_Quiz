@@ -51,7 +51,7 @@ $current = $_SESSION['current'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selected = $_POST['answer'] ?? '';
     $correctAnswer = $questions[$current]['ans'];
-  
+
     // Store the user's selected answer
     $_SESSION['answers'][$current] = $selected;
 
@@ -75,31 +75,21 @@ $question = $questions[$current];
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
         body {
-            background: #191c5c;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: "Caveat", cursive;
             margin: 0;
+            padding: 0;
         }
-        .quiz-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            width: 500px;
-            padding: 30px;
-            text-align: center;
-        }
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+
         label {
             display: block;
             margin: 10px 0;
@@ -110,48 +100,30 @@ $question = $questions[$current];
             transition: background 0.3s;
             text-align: start;
         }
+
         input[type="radio"] {
             margin-right: 10px;
         }
-        label:hover {
-            background: #e0e0e0;
-        }
-        .btn {
-            background: #4CAF50;
-            color: white;
-            padding: 12px 25px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background: #45a049;
-        }
-        .progress {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #555;
-        }
     </style>
 </head>
-<body>
 
-<div class="quiz-container">
-    <h2>Question <?= $current+1 ?> of <?= count($questions) ?></h2>
-    <form method="post">
-        <p style="font-size:18px;"><?= htmlspecialchars($question['qns']) ?></p>
+<body class="bg-gray-50 h-[100vh] w-[100vw] bg-gradient-to-l from-[#191c5d] to-[#191c2c] ">
+    <div class="flex h-full w-full items-center justify-center">
+        <div class="quiz-container w-[90%] md:w-[40%] h-auto bg-white p-6 rounded-xl text-center shadow-lg">
+            <h2 class="text-2xl md:text-xl font-semibold text-gray-700">Question <?= $current + 1 ?> of <?= count($questions) ?></h2>
+            <form method="post">
+                <p class="text-3xl leading-none xl:text-3xl font-semibold py-4 text-gray-700"><?= htmlspecialchars($question['qns']) ?></p>
 
-        <label><input type="radio" name="answer" value="OptA" required> <?= htmlspecialchars($question['OptA']) ?></label>
-        <label><input type="radio" name="answer" value="OptB"> <?= htmlspecialchars($question['OptB']) ?></label>
-        <label><input type="radio" name="answer" value="OptC"> <?= htmlspecialchars($question['OptC']) ?></label>
-        <label><input type="radio" name="answer" value="OptD"> <?= htmlspecialchars($question['OptD']) ?></label>
+                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptA" required> <?= htmlspecialchars($question['OptA']) ?></label>
+                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptB"> <?= htmlspecialchars($question['OptB']) ?></label>
+                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptC"> <?= htmlspecialchars($question['OptC']) ?></label>
+                <label class="text-2xl xl:text-xl font-semibold text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptD"> <?= htmlspecialchars($question['OptD']) ?></label>
 
-        <button type="submit" class="btn">Next</button>
-    </form>
-    <div class="progress">Progress: <?= $current+1 ?>/<?= count($questions) ?></div>
-</div>
-
+                <button type="submit" class="w-[30%] bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white text-center text-2xl xl:text-2xl font-semibold px-2 py-2 xl:py-4 mt-3 rounded-lg hover:scale-105 transition">Next</button>
+            </form>
+            <div class="progress pt-3 text-[#191c5c] font-semibold">Progress: <?= $current + 1 ?>/<?= count($questions) ?></div>
+        </div>
+    </div>
 </body>
+
 </html>
