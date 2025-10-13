@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WIN OR BOOZE</title>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -124,18 +124,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
-
-    .logo {
+      @import url('https://fonts.googleapis.com/css2?family=Allison&family=Caveat:wght@400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap');
+    
+      .logo {
       font-family: "Pacifico", cursive;
       /* font-family: "Allison", cursive; */
-    }
-
-    body {
-      font-family: "Inter Tight", sans-serif;
-    }
-
-    body {
+      }
+      body{
+        font-family: "Inter Tight", sans-serif;    
+      }
+      body {
       background-image: url("https://t4.ftcdn.net/jpg/04/39/13/37/360_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg");
       background-repeat: no-repeat;
       background-size: cover;
@@ -146,13 +144,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-  <div class=" flex w-screen h-auto justify-center md:justify-start items-center md:pl-20 p-4">
-    <form class="form w-[350px] h-[450px] px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm1" onsubmit="return f1()">
+  <div class="main flex w-screen h-screen justify-center md:justify-start items-center md:pl-20 p-4">
+    <form class="form w-[350px] h-auto px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm1" onsubmit="return f1()">
       <div class="flex justify-center">
-        <div class="w-[90px] h-[90px] rounded-full bg-[#191c5c] flex justify-center items-center">
-          <h1 class=" logo text-2xl tracking-wider italic text-white">Quiz Time</h1>
+          <div class="w-[90px] h-[90px] rounded-full bg-[#191c5c] flex justify-center items-center">
+            <h1 class=" logo text-2xl tracking-wider italic text-white">Quiz Time</h1>
           <!-- <img class="w-[50%] h-[50%] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg"> -->
-        </div>
+          </div>
       </div>
       <div class="heading p-2">
         <h1 class="text-[1.5rem] font-medium text-[#191c5c]"> Sign in to Quiz</h1>
@@ -197,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
       <!-- Sign In Button -->
 
-      <div class="p-2 pt-5">
+      <div class="pt-1">
         <input class="bg-[#191c5c] text-white cursor-pointer font-medium  px-[35px] rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="logBtn" value="Sign in">
         <p class="text-sm text-[#191c5c] p-3"> New to Quiz? <a href="Registration.php" class="text-blue-600">Create an account → </a></p>
       </div>

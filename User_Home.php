@@ -70,8 +70,8 @@ $userResults = $resultQuery->get_result();
 
             <div class="bg-white p-6 rounded-xl shadow-2xl w-full xl:w-[30%] ">
                 <h2 class="text-xl font-semibold mb-4">👤 Profile</h2>
-                <p class="text-sm"><b>Name:</b> <?= htmlspecialchars($name) ?></p>
-                <p class="text-sm"><b>Email:</b> <?= htmlspecialchars($email) ?></p>
+                <p class="text-sm"><b>Name :</b> <?= htmlspecialchars($name) ?></p>
+                <p class="text-sm"><b>Email :</b> <?= htmlspecialchars($email) ?></p>
                 <p class="mt-3 text-gray-600 text-sm ">Keep learning, keep growing 🚀</p>
             </div>
 

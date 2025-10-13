@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
 
 <body>
    <div class="main flex w-screen h-screen justify-center md:justify-start items-center md:pl-20 p-4">
-      <form class = "form p-4 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
+      <form class="form w-[350px] h-auto px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
          <div class="flex justify-center">
             <div class="w-[90px] h-[90px] rounded-full bg-[#191c5c] flex justify-center items-center">
                <h1 class=" logo text-2xl tracking-wider italic text-white">Quiz Time</h1>
@@ -171,8 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
                   </svg>
                </button>
             </div>
-         <div>
-            <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-30 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create Account"><BR />
+         <div class="pt-1">
+            <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-[35px] rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create Account"><BR />
             <p class="text-sm text-[#191c5c] p-3"> Already have an account?  <a href="Login.php" class="text-blue-600"> Sign in → </a></p>
          </div>
       </form>
