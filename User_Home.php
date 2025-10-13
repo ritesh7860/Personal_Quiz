@@ -138,8 +138,8 @@ $userResults = $resultQuery->get_result();
     </div>
 
     <!-- Confirmation Modal -->
-    <div id="confirmModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div class="bg-white rounded-xl p-8 max-w-sm text-center shadow-lg">
+    <div id="confirmModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 max-w-sm text-center shadow-lg">
             <h2 class="text-xl font-bold mb-4">⚠️ Ready to Start?</h2>
             <p class="text-gray-600 mb-6">Have you read all the rules? Once you start, you cannot go back.</p>
             <div class="flex justify-center gap-4">

@@ -14,6 +14,7 @@ $name = $_SESSION['name'] ?? 'User';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Review</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -71,8 +72,8 @@ $name = $_SESSION['name'] ?? 'User';
     <!-- Navbar -->
     <nav class="bg-[#191c5c] text-white px-6 py-4 flex justify-between items-center shadow-lg">
         <h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1>
-        <div class="hidden md:flex items-center gap-4">
-            <span class="text-gray-100 font-semibold">Welcome, <?= htmlspecialchars($name) ?> 👋</span>
+        <div class="flex items-center gap-4">
+            <span class="text-gray-100 hidden md:flex font-semibold">Welcome, <?= htmlspecialchars($name) ?> 👋</span>
             <a href="Logout.php" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
         </div>
     </nav>

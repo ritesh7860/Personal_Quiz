@@ -109,7 +109,7 @@ $question = $questions[$current];
 
 <body class="bg-gray-50 h-[100vh] w-[100vw] bg-gradient-to-l from-[#191c5d] to-[#191c2c] ">
     <div class="flex h-full w-full items-center justify-center">
-        <div class="quiz-container w-[90%] md:w-[35%] h-auto bg-white p-6 rounded-xl text-center shadow-lg">
+        <div class="quiz-container w-[88%] md:w-[35%] h-auto bg-white p-6 rounded-xl text-center shadow-lg">
             <h2 class="text-lg md:text-sm font-medium text-gray-700">Question <?= $current + 1 ?> of <?= count($questions) ?></h2>
             <form method="post">
                 <p class="text-2xl md:text-xl leading-none font-medium py-4 text-gray-700"><?= htmlspecialchars($question['qns']) ?></p>
@@ -119,7 +119,7 @@ $question = $questions[$current];
                 <label class="text-lg md:text-sm font-medium text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptC"> <?= htmlspecialchars($question['OptC']) ?></label>
                 <label class="text-lg md:text-sm font-medium text-gray-700 hover:bg-gradient-to-r from-[#191c9d] to-[#191c5c] hover:text-white"><input type="radio" name="answer" value="OptD"> <?= htmlspecialchars($question['OptD']) ?></label>
 
-                <button type="submit" class="w-[30%] bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white text-center text-2xl xl:text-xl font-semibold px-2 py-3 mt-3 rounded-lg hover:scale-105 transition">Next</button>
+                <button type="submit" class="w-[40%] bg-gradient-to-r from-[#191c9d] to-[#191c5c] text-white text-center text-2xl xl:text-xl font-semibold px-2 py-3 mt-3 rounded-lg hover:scale-105 transition">Next</button>
             </form>
             <!-- <div class="progress pt-3 text-[#191c5c] text-lg font-medium">Progress: <?= $current + 1 ?>/<?= count($questions) ?></div> -->
         </div>
