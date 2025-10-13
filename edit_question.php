@@ -46,9 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Edit Question</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body{
-            /* background-color:rgba(230, 251, 255, 0.88); */
-        }
     </style>
 </head>
 
