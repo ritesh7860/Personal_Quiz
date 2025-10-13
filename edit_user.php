@@ -101,7 +101,7 @@ $link->close();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-gray-200">
     <div class="main flex h-[80vh] mt-[50px] flex-col justify-center items-center">
         <?php if ($user): ?>
             <form class="form p-4 bg-white shadow-xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">

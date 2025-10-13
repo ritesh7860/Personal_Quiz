@@ -77,7 +77,7 @@ if ($role === 'admin') {
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #f4f6f9;
+            /* background: #f4f6f9; */
             color: #333;
         }
 
@@ -175,7 +175,7 @@ if ($role === 'admin') {
     </style>
 </head>
 
-<body>
+<body class="bg-gray-100">
     <header>
         <?= ($role === 'admin') ? include "welcome.php" : "Your Quiz Results, " . htmlspecialchars($name) ?>
     </header>

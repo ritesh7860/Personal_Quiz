@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 
-<body>
+<body class="bg-gray-200">
     <div class="main flex h-[80vh] mt-[50px] flex-col justify-center items-center">
         <form class="form p-4 bg-white shadow-xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
             <div class="heading p-2">

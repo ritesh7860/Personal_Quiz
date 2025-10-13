@@ -47,15 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         body{
-            background-color:rgba(230, 251, 255, 0.88);
+            /* background-color:rgba(230, 251, 255, 0.88); */
         }
     </style>
 </head>
 
-<body>
+<body class="bg-gray-200">
     <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
         <h2 class="font-medium text-[26px] mb-[20px]">Edit Question</h2>
-        <form class="w-[50%] border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" method="post">
+        <form class="w-[50%] border-1 bg-white flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" method="post">
             
             <!-- Technology -->
             <div class="flex flex-col">
