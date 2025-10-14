@@ -94,7 +94,7 @@ $resultset = $stmt->get_result();
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         th,
@@ -138,7 +138,7 @@ $resultset = $stmt->get_result();
 <body class="bg-gray-200">
     <div class="main xl:overflow-y-hidden h-[88vh] w-[100vw] p-4 mt-[50px]">
         <!-- Technology Filter -->
-        <div class="flex justify-between items-center gap-2 fixed bg-white w-[97%] min-h-[50px] top-[50px]">
+        <div class="flex justify-between items-center gap-2 fixed bg-white w-[97%] min-h-[50px] top-[50px] py-4">
             <form  method="get" action="">
                 <div>
                     <label class="hidden md:inline text-xl text-justify font-medium">Select Technology:</label>
@@ -151,7 +151,7 @@ $resultset = $stmt->get_result();
                         <?php endforeach; ?>
                     </select>
                 </div>
-        </form>
+            </form>
 
             <!-- Search form (method GET) -->
             <div class="w-[300px] md:w-[500px]">
@@ -171,7 +171,7 @@ $resultset = $stmt->get_result();
             </div>
         </div>
 
-        <table class="table-header sticky top-[35px] mt-[100px] overflow-y-scroll">
+        <table class="table-header sticky top-[50px] overflow-y-scroll">
             <tr>
                 <th class="w-[5%]">ID</th>
                 <th class="w-[40%] min-w-[250px]">Question</th>
