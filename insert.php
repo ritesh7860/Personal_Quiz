@@ -44,7 +44,7 @@ if (isset($_POST['s1'])) {
 
 <body class="bg-gray-200">
     <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[50px] py-2">
-        <h2 class="font-medium text-[26px]">Create Questions</h2>
+        <h2 class="font-medium text-[26px] py-2 tracking-wide">Create Questions</h2>
         
         <form class="w-[90%] md:w-[80%] xl:w-[60%] bg-white flex flex-col gap-2 bg-[#e6e6e6] rounded-md p-4 shadow-lg mt-2 " name="fr1" method="post">
             

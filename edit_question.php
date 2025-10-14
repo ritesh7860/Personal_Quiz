@@ -50,14 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body class="bg-gray-200">
-    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
-        <h2 class="font-medium text-[26px] mb-[20px]">Edit Question</h2>
-        <form class="w-[50%] border-1 bg-white flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" method="post">
+    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[50px] py-2">
+        <h2 class="font-medium text-[26px] py-2 tracking-wide">Edit Question</h2>
+        <form class="w-[90%] md:w-[80%] xl:w-[60%] bg-white flex flex-col gap-2 bg-[#e6e6e6] rounded-md p-4 mt-2" method="post">
             
             <!-- Technology -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select Technology</label>
-                <select class="cursor-pointer border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="tech" required>
+                <select class="cursor-pointer border-1 border-gray-300 text-gray-600 p-2 rounded-sm" name="tech" required>
                     <option value="" disabled>--Select--</option>
                     <?php foreach ($technologies as $t): ?>
                         <option value="<?= htmlspecialchars($t) ?>" <?= ($t == $row['technology']) ? 'selected' : '' ?>>
@@ -70,33 +70,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Question -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Question</label>
-                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm"
+                <textarea class="border-1 focus:ring-1 outline-none border-gray-300 p-1.5 rounded-sm"
                           name="ques" required><?= htmlspecialchars($row['qns']) ?></textarea>
             </div>
 
             <!-- Options -->
-            <div class="flex gap-3">
-                <div class="flex flex-col w-[50%]">
+            <div class="flex flex-col md:flex-row gap-3">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option A</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm"
                            type="text" name="a" value="<?= htmlspecialchars($row['OptA']) ?>" required />
                 </div>
-                <div class="flex flex-col w-[50%]">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option B</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm"
                            type="text" name="b" value="<?= htmlspecialchars($row['OptB']) ?>" required />
                 </div>
             </div>
 
-            <div class="flex gap-3">
-                <div class="flex flex-col w-[50%]">
+            <div class="flex flex-col md:flex-row gap-3">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option C</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm"
                            type="text" name="c" value="<?= htmlspecialchars($row['OptC']) ?>" required />
                 </div>
-                <div class="flex flex-col w-[50%]">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option D</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm"
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm"
                            type="text" name="d" value="<?= htmlspecialchars($row['OptD']) ?>" required />
                 </div>
             </div>
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Correct Answer -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select the correct option</label>
-                <select class="cursor-pointer border-1 border-gray-400 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" 
+                <select class="cursor-pointer border-1 border-gray-300 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" 
                         name="ans" required>
                     <option value="OptA" <?= $row['ans']=="OptA"?"selected":"" ?>>Option A</option>
                     <option value="OptB" <?= $row['ans']=="OptB"?"selected":"" ?>>Option B</option>
@@ -116,10 +116,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Buttons -->
             <div class="mt-3 flex justify-center gap-2">
                 <a href="manage_questions.php" 
-                   class="px-[10%] py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer text-center">
+                   class="px-[10%] py-2 text-[#191c5c] bg-white hover:bg-[#e6e6e6] border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer text-center">
                    Cancel
                 </a>
-                <input class="px-[10%] py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" 
+                <input class="px-[10%] py-2 bg-[#191c5c] hover:bg-[#191c7c] border-[#191c5c] border-2 text-white font-semibold rounded-md cursor-pointer" 
                        type="submit" value="Update" />
             </div>
 
