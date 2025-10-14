@@ -78,17 +78,31 @@ if ($search !== "") {
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="w-[98vw] bg-gray-100">
-    <div class="main flex flex-col xl:flex-row mt-[50px] gap-4 p-4">
-        <!-- Left Panel: Technology List -->
-        <div class="w-full xl:w-[75%] bg-white border border-gray-200 rounded-md shadow-md px-4 py-2">
-            <div class="flex justify-between items-center py-4 sticky top-[50px] bg-white z-4">
-                <h2 class="text-2xl hidden md:flex font-semibold ">Available Technologies</h2>
+<body class="w-full bg-gray-100">
+    <div class="py-3 px-4 mt-[50px] bg-white shadow-lg">
+            <form method="post" class="w-full xl:w-[75%] m-auto flex">
+                <div class="w-[70%]">
+                    <input type="text" name="tech_name" placeholder="Add new Technology"
+                        class="w-[100%] px-4 py-2 border border-gray-300 rounded-md focus:outline-[#191c5c]" required>
+                </div>
+                <div class="w-[30%] text-end">
+                    <button type="submit" name="add" class="bg-[#191c5c] px-[10%] py-2 text-white font-medium rounded-md hover:bg-[#191c7c]">
+                        Add
+                    </button>
+                </div>
+            </form>
+    </div>
+
+    <div class="main flex flex-col xl:flex-row  gap-4 p-4 justify-center">
+        
+        <div class="w-full xl:w-[75%] bg-white border border-gray-200 rounded-md shadow-md px-4 py-2 shadow-lg">
+            <div class="flex w-full justify-between items-center py-4 sticky top-[50px] bg-white z-4">
+                <h2 class="text-2xl w-[50%] hidden md:flex font-semibold ">Technologies</h2>
                 <!-- Search -->
-                <form method="get" class="flex gap-2 items-center">
+                <form method="get" class="flex w-full md:w-[50%] gap-2 items-center">
                     <input type="text" name="search" value="<?= htmlspecialchars($search) ?>"
                         placeholder="Search Technology"
-                        class="px-3 py-2 border border-gray-300 rounded-md focus:outline-[#191c5c]">
+                        class="px-3 py-2 w-full border border-gray-300 rounded-md focus:outline-[#191c5c]">
                     <?php if ($search !== ''): ?>
                         <a href="manage_technologies.php" class="text-red-600 text-lg font-bold">×</a>
                     <?php endif; ?>
@@ -153,7 +167,7 @@ if ($search !== "") {
         </div>
 
         <!-- Right Panel: Add Technology -->
-        <div class="w-full xl:w-[25%] p-4 bg-white rounded-md shadow-lg h-fit sticky top-20">
+        <!-- <div class="w-full xl:w-[25%] p-4 bg-white rounded-md shadow-lg h-fit sticky top-20">
             <h1 class="text-xl font-semibold text-center text-[#191c5c] mb-4">Add Technology</h1>
             <form method="post" class="space-y-4">
                 <div>
@@ -171,11 +185,10 @@ if ($search !== "") {
                 </div>
             </form>
 
-            <!-- Message -->
             <?php if ($msg): ?>
                 <p class="mt-4 text-center font-medium text-red-600"><?= htmlspecialchars($msg) ?></p>
             <?php endif; ?>
-        </div>
+        </div> -->
     </div>
 </body>
 
