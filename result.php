@@ -90,7 +90,7 @@ if ($role === 'admin') {
             /* font-family: "Allison", cursive; */
         }
 
-        header {
+        nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -105,7 +105,7 @@ if ($role === 'admin') {
 
         .layout {
             display: flex;
-            /* margin-top: 70px; */
+            margin-top: 50px;
             height: calc(100vh - 70px);
         }
 
@@ -186,7 +186,7 @@ if ($role === 'admin') {
 
 <body>
     <!-- Navbar -->
-    <nav class="bg-[#191c5c] text-white px-6 py-4 flex justify-between items-center shadow-lg">
+    <nav class="h-[50px] min-h-[50px] bg-[#191c5c] text-white px-6 py-4 flex justify-between items-center shadow-lg">
         <h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1>
         <div class="flex items-center gap-4">
             <span class="text-gray-100 hidden md:flex font-semibold">Welcome, <?= htmlspecialchars($name) ?> 👋</span>
