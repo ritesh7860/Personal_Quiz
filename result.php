@@ -105,38 +105,28 @@ if ($role === 'admin') {
 
         .layout {
             display: flex;
-            margin-top: 50px;
-            height: calc(100vh - 70px);
-        }
-
-        .chart-section {
-            flex: 1;
-            background: white;
-            margin: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            overflow-y: auto;
+            /* margin-top: 50px; */
+            height: calc(100vh - 100px);
         }
 
         .table-section {
-            width: 70%;
+            width: auto;
             flex: 2;
             background: white;
             margin: 15px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            /* padding: 20px; */
             overflow-y: auto;
         }
 
-        .filter-bar {
+        /* .filter-bar {
             width: 60%;
             position: fixed;
-            top: 100px;
+            top: 50px;
             margin-bottom: 15px;
             z-index: 8;
-        }
+        } */
 
         select {
             padding: 8px 12px;
@@ -147,7 +137,7 @@ if ($role === 'admin') {
         table {
             border-collapse: collapse;
             width: 100%;
-            margin-top: 50px;
+            /* margin-top: 50px; */
         }
 
         th,
@@ -193,25 +183,29 @@ if ($role === 'admin') {
             <a href="Logout.php" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
         </div>
     </nav>
-    <div class="layout">
-        <div class="table-section">
-            <?php if ($role === 'admin'): ?>
-                <div class="filter-bar">
-                    <form method="get" action="">
-                        <label for="tech">Filter by Technology:</label>
-                        <select name="tech" id="tech" onchange="this.form.submit()">
-                            <option value="">All</option>
-                            <?php while ($t = $techList->fetch_assoc()): ?>
-                                <option value="<?= htmlspecialchars($t['tech_name']) ?>" <?= ($filterTech === $t['tech_name']) ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($t['tech_name']) ?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                    </form>
-                </div>
-            <?php endif; ?>
 
-            <table>
+    <div class="layout flex flex-col py-6">
+        <div class="flex justify-center">
+            <h1 class="mt-[50px] font-semibold text-2xl tracking-wide">Results</h1>
+        </div>
+        <div class="table-section pb-6">
+            
+                <div class="filter-bar flex bg-white w-full justify-between items-center p-4">
+                <form method="get" action="" class="flex items-center gap-2">
+                    <label for="tech" class="font-semibold">Filter by Technology:</label>
+                    <select name="tech" id="tech" onchange="this.form.submit()">
+                        <option value="">All</option>
+                        <?php while ($t = $techList->fetch_assoc()): ?>
+                            <option value="<?= htmlspecialchars($t['tech_name']) ?>" <?= ($filterTech === $t['tech_name']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($t['tech_name']) ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </form>
+            </div>
+
+            <div class="overflow-x-auto h-full">
+                <table>
                 <tr>
                     <?php if ($role === 'admin'): ?>
                         <th>User</th>
@@ -243,50 +237,14 @@ if ($role === 'admin') {
                     </tr>
                 <?php endif; ?>
             </table>
-
-            <?php if ($role === 'user'): ?>
-                <div class="text-center mt-5">
-                    <a href="User_Home.php" class="px-4 py-2 text-[#191c5c] bg-white border-2 border-[#191c5c] hover:bg-gray-200 font-semibold rounded-md">Home</a>
-                    <a href="Logout.php" class="bg-[#191c5c] hover:bg-[#191c7c] border-2 border-[#191c5c] text-white px-4 py-2 font-semibold rounded-md">Logout</a>
-                </div>
-            <?php endif; ?>
+            </div>
         </div>
 
-        <!-- Graph -->
-        <?php if ($role === 'admin' && !empty($chartData)): ?>
-            <div class="chart-section h-[50%]">
-                <h3 style="text-align:center; color:#191c5c;">📊 Average Scores by Technology</h3>
-                <canvas id="techChart"></canvas>
-            </div>
-        <?php endif; ?>
+         <div class="text-center mt-5">
+            <a href="User_Home.php" class="px-4 py-2 text-[#191c5c] bg-white border-2 border-[#191c5c] hover:bg-gray-200 font-semibold rounded-md">Home</a>
+            <a href="Logout.php" class="bg-[#191c5c] hover:bg-[#191c7c] border-2 border-[#191c5c] text-white px-4 py-2 font-semibold rounded-md">Logout</a>
+        </div>
     </div>
-
-    <?php if ($role === 'admin' && !empty($chartData)): ?>
-        <script>
-            const ctx = document.getElementById('techChart').getContext('2d');
-            const chartData = {
-                labels: <?= json_encode(array_column($chartData, 'tech_name')) ?>,
-                datasets: [{
-                    label: 'Average % Score',
-                    data: <?= json_encode(array_map(fn($r) => round(($r['avg_score'] / $r['avg_total']) * 100, 2), $chartData)) ?>,
-                    backgroundColor: ['#4CAF50', '#2196F3', '#FF9800', '#E91E63', '#9C27B0']
-                }]
-            };
-            new Chart(ctx, {
-                type: 'bar',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        </script>
-    <?php endif; ?>
 </body>
 
 </html>
