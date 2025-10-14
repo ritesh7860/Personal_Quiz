@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 /">
     <title>WIN OR BOOZE</title>
     <script type="text/javascript">
         function validateEmail(email) {
@@ -105,40 +105,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-    </style>
+
 </head>
 
 <body class="bg-gray-200">
-    <div class="main flex h-[80vh] mt-[50px] flex-col justify-center items-center">
-        <form class="form p-4 bg-white shadow-xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
-            <div class="heading p-2">
-                <h3 class="text-[1.5rem] font-medium text-[#191c5c]"> Create User </h3>
+    <div class="main flex h-[80vh] mt-[50px] flex-col items-center">
+        <div class="heading py-4">
+                <h3 class="text-[1.5rem] font-semibold"> Add New User </h3>
             </div>
-
+        <form class="w-[90%] md:w-[50%] xl:w-[30%] form p-4 bg-white shadow-xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
             <div class="flex flex-col gap-3 p-2">
                 <div class="flex flex-col pt-2">
-                    <label class="text-start text-sm font-medium text-[#191c5c]">Username :</label>
-                    <input class="px-4 py-2 text-[#191c5c] text-sm rounded-md focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter username" name="name" id="name" onfocus="resetBorder(this)" />
+                    <label class="text-start text-sm font-medium">Username :</label>
+                    <input class="px-4 py-2 text-sm rounded-md focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter username" name="name" id="name" onfocus="resetBorder(this)" />
                 </div>
                 <div class="flex flex-col">
-                    <label class="text-start text-sm font-medium text-[#191c5c]">Email : </label>
-                    <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter email" name="email" id="mail" onfocus="resetBorder(this)" />
+                    <label class="text-start text-sm font-medium">Email : </label>
+                    <input class="px-4 py-2 rounded-md text-sm focus:ring-1 outline-none border-1 border-gray-300" type="text" placeholder=" Enter email" name="email" id="mail" onfocus="resetBorder(this)" />
                     <span id="emailMsg" class="text-red-700 text-xs text-start"></span>
                 </div>
                 <div class="flex flex-col relative">
-                    <label class="text-start text-sm font-medium text-[#191c5c]">Password :</label>
-                    <input class="px-4 py-2 rounded-md text-[#191c5c] text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter password" name="password" id="pwd" onfocus="resetBorder(this)" />
+                    <label class="text-start text-sm font-medium">Password :</label>
+                    <input class="px-4 py-2 rounded-md text-sm focus:ring-1 outline-none border-1 border-gray-300" type="password" placeholder="Enter password" name="password" id="pwd" onfocus="resetBorder(this)" />
                     <!-- Eye Button -->
                     <button type="button" onclick="togglePassword()" class="absolute right-3 top-7 text-gray-500 hover:text-gray-700 cursor-pointer">
-                        <!-- Eye Open -->
+                        <!-- Eye Closed -->
                         <svg id="eyeClosed" class="hidden" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 16.01C14.2091 16.01 16 14.2191 16 12.01C16 9.80087 14.2091 8.01001 12 8.01001C9.79086 8.01001 8 9.80087 8 12.01C8 14.2191 9.79086 16.01 12 16.01Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M2 11.98C8.09 1.31996 15.91 1.32996 22 11.98" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M22 12.01C15.91 22.67 8.09 22.66 2 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
 
-                        <!-- Eye Closed -->
+                        <!-- Eye Open -->
                         <svg id="eyeOpen" width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.83 9.17999C14.2706 8.61995 13.5576 8.23846 12.7813 8.08386C12.0049 7.92926 11.2002 8.00851 10.4689 8.31152C9.73758 8.61453 9.11264 9.12769 8.67316 9.78607C8.23367 10.4444 7.99938 11.2184 8 12.01C7.99916 13.0663 8.41619 14.08 9.16004 14.83" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M12 16.01C13.0609 16.01 14.0783 15.5886 14.8284 14.8384C15.5786 14.0883 16 13.0709 16 12.01" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -150,14 +148,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </button>
 
                     <div class="flex gap-4 py-4 items-center">
-                        <label class="text-start text-sm font-medium text-[#191c5c]">Is Admin :</label>
+                        <label class="text-start text-sm font-medium">Is Admin :</label>
                         <input type="radio" name="role" value="admin"> Yes
                         <input type="radio" name="role" value="user" checked> No
                     </div>
 
                 </div>
                 <div>
-                    <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-30 rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create User"><BR />
+                    <input class="bg-[#191c5c] text-white cursor-pointer font-medium px-[10%] rounded-md py-2 transition-all hover:scale-103 duration-500 hover:shadow-xl" type="submit" name="btn" value="Create User"><BR />
                 </div>
                 <p style="color:red;"><?= htmlspecialchars($msg) ?></p>
         </form>

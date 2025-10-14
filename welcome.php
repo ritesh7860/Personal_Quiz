@@ -66,7 +66,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
 
     <!-- Mobile Menu -->
     <div id="menu" class="hidden md:hidden bg-[#191c5c] shadow-lg">
-      <a href="insert.php" class="block px-4 py-2 text-gray-100 font-semibold">Home</a>
+      <a href="admin_dashboard.php" class="block px-4 py-2 text-gray-100 font-semibold">Home</a>
       <a href="manage_questions.php" class="block px-4 py-2 text-gray-100 font-semibold">Questions</a>
       <a href="admin_user.php" class="block px-4 py-2 text-gray-100 font-semibold">Users</a>
       <a href="manage_technologies.php" class="block px-4 py-2 text-gray-100 font-semibold">Technologies</a>
