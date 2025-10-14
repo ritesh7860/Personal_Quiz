@@ -43,15 +43,15 @@ if (isset($_POST['s1'])) {
 </head>
 
 <body class="bg-gray-200">
-    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[10vh] 2xl:mt-[8vh]">
-        <h2 class="font-medium text-[26px] mb-[20px]">Create Questions</h2>
+    <div class="flex flex-col h-[88%] w-screen justify-center items-center mt-[50px] py-2">
+        <h2 class="font-medium text-[26px]">Create Questions</h2>
         
-        <form class="w-[50%] bg-white border-1 flex flex-col gap-2 border-red bg-[#e6e6e6] rounded-md p-4" name="fr1" method="post">
+        <form class="w-[90%] md:w-[80%] xl:w-[60%] bg-white flex flex-col gap-2 bg-[#e6e6e6] rounded-md p-4 shadow-lg mt-2 " name="fr1" method="post">
             
             <!-- Technology Dropdown -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select Technology</label>
-                <select class="cursor-pointer border-1 border-gray-400 text-gray-600 p-2 rounded-sm" name="tech" required>
+                <select class="cursor-pointer border-1 border-gray-300 text-gray-600 p-2 rounded-sm" name="tech" required>
                     <option value="" selected disabled>--Select--</option>
                     <?php
                     $link = mysqli_connect("localhost", "root", "", "quiz");
@@ -77,34 +77,34 @@ if (isset($_POST['s1'])) {
             <!-- Question -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Question</label>
-                <textarea class="border-1 focus:ring-1 outline-none border-gray-400 p-1.5 rounded-sm" 
+                <textarea class="border-1 focus:ring-1 outline-none border-gray-300 p-1.5 rounded-sm" 
                           name="ques" placeholder="Enter question" required></textarea>
             </div>
 
             <!-- Options A & B -->
-            <div class="flex gap-3">
-                <div class="flex flex-col w-[50%]">
+            <div class="flex flex-col md:flex-row gap-3">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option A</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm" 
                            type="text" name="a" placeholder="Enter option" required />
                 </div>
-                <div class="flex flex-col w-[50%]">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option B</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm" 
                            type="text" name="b" placeholder="Enter option" required />
                 </div>
             </div>
 
             <!-- Options C & D -->
-            <div class="flex gap-3">
-                <div class="flex flex-col w-[50%]">
+            <div class="flex flex-col md:flex-row  gap-3">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option C</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm" 
                            type="text" name="c" placeholder="Enter option" required />
                 </div>
-                <div class="flex flex-col w-[50%]">
+                <div class="flex flex-col w-full md:w-[50%]">
                     <label class="text-md font-medium">Option D</label>
-                    <input class="border-1 border-gray-400 focus:ring-1 outline-none p-1.5 rounded-sm" 
+                    <input class="border-1 border-gray-300 focus:ring-1 outline-none p-1.5 rounded-sm" 
                            type="text" name="d" placeholder="Enter option" required />
                 </div>
             </div>
@@ -112,7 +112,7 @@ if (isset($_POST['s1'])) {
             <!-- Correct Answer -->
             <div class="flex flex-col">
                 <label class="text-md font-medium">Select the correct option</label>
-                <select class="cursor-pointer border-1 border-gray-400 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" 
+                <select class="cursor-pointer border-1 border-gray-300 focus:ring-1 outline-none text-gray-600 p-2 rounded-sm" 
                         name="ans" required>
                     <option value="" disabled selected>--Select--</option>
                     <option value="OptA">Option A</option>
@@ -124,9 +124,9 @@ if (isset($_POST['s1'])) {
 
             <!-- Buttons -->
             <div class="mt-3 flex justify-center gap-2">
-                <input class="px-[10%] py-2 text-[#191c5c] bg-gray-300 border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer" 
+                <input class="px-[10%] py-2 text-[#191c5c] bg-white hover:bg-[#e6e6e6] border-2 font-semibold border-[#191c5c] rounded-md cursor-pointer" 
                        type="reset" value="Reset" />
-                <input class="px-[10%] py-2 bg-[#191c5c] text-white font-semibold rounded-md cursor-pointer" 
+                <input class="px-[10%] py-2 bg-[#191c5c] hover:bg-[#191c7c] border-2  border-[#191c5c] text-white font-semibold rounded-md cursor-pointer" 
                        type="submit" name="s1" value="Save" />
             </div>
 

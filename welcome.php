@@ -47,7 +47,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
         </div>
 
         <div class="hidden md:flex items-center gap-4">
-          <span class="text-gray-100 font-semibold">Welcome, <?= htmlspecialchars($adminName) ?> 👋</span>
+          <span class="hidden xl:flex text-gray-100 font-semibold">Welcome, <?= htmlspecialchars($adminName) ?> 👋</span>
           <a href="Logout.php" class="text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm font-semibold">Logout</a>
         </div>
 
