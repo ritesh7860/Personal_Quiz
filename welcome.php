@@ -32,7 +32,7 @@ $adminName = isset($_SESSION['name']) ? $_SESSION['name'] : 'Admin';
       <div class="flex justify-between items-center min-h-[50px] h-[50px] ">
         <!-- Logo -->
         <div class="flex">
-          <h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1>
+          <a href="Landing.php"><h1 class=" logo text-2xl font- tracking-wider italic text-white ">Quiz Time</h1></a>
           <!-- <img class="w-[50%] h-[50%] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg"> -->
         </div>
 

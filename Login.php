@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form class="form w-[350px] h-auto px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm1" onsubmit="return f1()">
       <div class="flex justify-center">
           <div class="w-[90px] h-[90px] rounded-full bg-[#191c5c] flex justify-center items-center">
-            <h1 class=" logo text-2xl tracking-wider italic text-white">Quiz Time</h1>
+            <a href="landing.php"><h1 class=" logo text-2xl tracking-wider italic text-white">Quiz Time</h1></a>
           <!-- <img class="w-[50%] h-[50%] rounded-full" src="https://t4.ftcdn.net/jpg/02/50/32/43/360_F_250324355_6nh8Q5iUdb499Q4v79hYMEcSlFpIBhn7.jpg"> -->
           </div>
       </div>

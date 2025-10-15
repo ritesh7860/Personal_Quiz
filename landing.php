@@ -55,7 +55,7 @@
         <div class="flex m-auto items-center flex-col w-full md:w-[50%]">
             <h1 class="text-5xl font-bold animate__animated animate__fadeIn animate__delay-1s">Test Your Coding Skills!</h1>
             <p class="mt-4 text-lg animate__animated animate__fadeIn animate__delay-2s">Challenge yourself with quizzes on HTML, Python, Java, and more. Learn as you go!</p>
-            <a href="#quiz" class="mt-6 w-[60%] xl:w-[30%] font-semibold btn-primary text-white py-3 px-4 rounded btn-hover">Start Quiz Now</a>
+            <a href="Login.php" class="mt-6 w-[60%] xl:w-[30%] font-semibold btn-primary text-white py-3 px-4 rounded btn-hover">Start Quiz Now</a>
         </div>
         <div class="m-auto w-full md:w-[50%]">
             <div>
