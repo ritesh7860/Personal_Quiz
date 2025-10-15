@@ -189,11 +189,12 @@ if ($role === 'admin') {
             <h1 class="mt-[50px] font-semibold text-2xl tracking-wide">Results</h1>
         </div>
         <div class="table-section pb-6">
-            
-                <div class="filter-bar flex bg-white w-full justify-between items-center p-4">
-                <form method="get" action="" class="flex items-center gap-2">
-                    <label for="tech" class="font-semibold">Filter by Technology:</label>
-                    <select name="tech" id="tech" onchange="this.form.submit()">
+                <div class="filter-bar flex bg-white w-full items-center p-4">
+                <form method="get" action="" class="flex w-full items-center justify-around gap-2">
+                    <div>
+                        <label for="tech" class="font-semibold">Filter by Technology:</label>
+                    </div>
+                    <select class="p-2" name="tech" id="tech" onchange="this.form.submit()">
                         <option value="">All</option>
                         <?php while ($t = $techList->fetch_assoc()): ?>
                             <option value="<?= htmlspecialchars($t['tech_name']) ?>" <?= ($filterTech === $t['tech_name']) ? 'selected' : '' ?>>
