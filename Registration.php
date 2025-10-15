@@ -1,9 +1,14 @@
 <?php
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
     // Collect input safely
     $name = trim($_POST['name']);
     $mail = trim($_POST['mail']);
     $pwd1 = $_POST['pwd1'];
+    $pwd2 = $_POST['pwd2'];
 
     // Connect to DB
     $link = mysqli_connect("localhost", "root", "", "quiz");
@@ -11,25 +16,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
         die("Database connection failed: " . mysqli_connect_error());
     }
 
+    // Check if the email already exists
+    $checkEmailQuery = "SELECT * FROM regis WHERE email = ?";
+    if ($stmt = mysqli_prepare($link, $checkEmailQuery)) {
+        mysqli_stmt_bind_param($stmt, "s", $mail);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+
+        if (mysqli_stmt_num_rows($stmt) > 0) {
+            // Email already exists, show alert and redirect to sign up page
+            echo '<script>alert("This email is already registered. Please use a different email address."); window.location.href="Registration.php";</script>';
+            exit;
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        echo '<script>alert("Error preparing the SQL statement for email check.")</script>';
+        mysqli_close($link);
+        exit;
+    }
+
     // Hash password securely
     $hashedPassword = password_hash($pwd1, PASSWORD_DEFAULT);
 
     // Insert into regis table (make sure your table has columns: name, email, password)
     $qry = "INSERT INTO regis (name, email, password) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($link, $qry);
-    mysqli_stmt_bind_param($stmt, "sss", $name, $mail, $hashedPassword);
-    $r = mysqli_stmt_execute($stmt);
+    if ($stmt = mysqli_prepare($link, $qry)) {
+        mysqli_stmt_bind_param($stmt, "sss", $name, $mail, $hashedPassword);
+        $r = mysqli_stmt_execute($stmt);
 
-    if ($r) {
-        echo '<span style="color:black;"><h2>ACCOUNT CREATED SUCCESSFULLY 🎉</h2></span>';
+        if ($r) {
+            echo '<script>alert("Account created successfully 🎉"); window.location.href="Login.php";</script>';
+        } else {
+            echo '<script>alert("Registration Failed: ' . mysqli_error($link) . '");</script>';
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        echo '<span style="color:red;"><h2>Registration Failed: ' . mysqli_error($link) . '</h2></span>';
+        echo '<script>alert("Error preparing the SQL statement for registration.")</script>';
     }
 
-    mysqli_stmt_close($stmt);
+    // Close the connection
     mysqli_close($link);
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])) {
 
 <body>
    <div class="main flex w-screen h-screen justify-center md:justify-start items-center md:pl-20 p-4">
-      <form class="form w-[350px] h-auto px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
+      <form class="form w-[400px] h-auto px-4 py-5 bg-[#e6e6e6] shadow-2xl rounded-md" align="center" method="post" name="frm" onsubmit="return f()">
          <div class="flex justify-center">
             <div class="w-[90px] h-[90px] rounded-full bg-[#191c5c] flex justify-center items-center">
                <h1 class=" logo text-2xl tracking-wider italic text-white">Quiz Time</h1>
